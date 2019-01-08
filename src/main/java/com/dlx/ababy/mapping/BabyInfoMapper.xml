@@ -7,9 +7,10 @@
     <result column="bi_weight" jdbcType="INTEGER" property="biWeight" />
     <result column="bi_hinght" jdbcType="INTEGER" property="biHinght" />
     <result column="bi_date" jdbcType="DATE" property="biDate" />
+    <result column="bi_b_id" jdbcType="INTEGER" property="biBId" />
   </resultMap>
   <sql id="Base_Column_List">
-    bi_id, bi_info, bi_weight, bi_hinght, bi_date
+    bi_id, bi_info, bi_weight, bi_hinght, bi_date, bi_b_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -23,9 +24,9 @@
   </delete>
   <insert id="insert" parameterType="com.dlx.ababy.entity.BabyInfo">
     insert into baby_info (bi_id, bi_info, bi_weight, 
-      bi_hinght, bi_date)
+      bi_hinght, bi_date, bi_b_id)
     values (#{biId,jdbcType=INTEGER}, #{biInfo,jdbcType=VARCHAR}, #{biWeight,jdbcType=INTEGER}, 
-      #{biHinght,jdbcType=INTEGER}, #{biDate,jdbcType=DATE})
+      #{biHinght,jdbcType=INTEGER}, #{biDate,jdbcType=DATE}, #{biBId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.dlx.ababy.entity.BabyInfo">
     insert into baby_info
@@ -45,6 +46,9 @@
       <if test="biDate != null">
         bi_date,
       </if>
+      <if test="biBId != null">
+        bi_b_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="biId != null">
@@ -61,6 +65,9 @@
       </if>
       <if test="biDate != null">
         #{biDate,jdbcType=DATE},
+      </if>
+      <if test="biBId != null">
+        #{biBId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -79,6 +86,9 @@
       <if test="biDate != null">
         bi_date = #{biDate,jdbcType=DATE},
       </if>
+      <if test="biBId != null">
+        bi_b_id = #{biBId,jdbcType=INTEGER},
+      </if>
     </set>
     where bi_id = #{biId,jdbcType=INTEGER}
   </update>
@@ -87,7 +97,14 @@
     set bi_info = #{biInfo,jdbcType=VARCHAR},
       bi_weight = #{biWeight,jdbcType=INTEGER},
       bi_hinght = #{biHinght,jdbcType=INTEGER},
-      bi_date = #{biDate,jdbcType=DATE}
+      bi_date = #{biDate,jdbcType=DATE},
+      bi_b_id = #{biBId,jdbcType=INTEGER}
     where bi_id = #{biId,jdbcType=INTEGER}
   </update>
+  <select id="findByBId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from baby_info
+    where bi_b_id = #{biBId,jdbcType=INTEGER}
+  </select>
 </mapper>

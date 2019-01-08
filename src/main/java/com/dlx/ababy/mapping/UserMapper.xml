@@ -14,9 +14,10 @@
     <result column="u_type" jdbcType="INTEGER" property="uType" />
     <result column="u_ticket" jdbcType="INTEGER" property="uTicket" />
     <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="ar_id" jdbcType="INTEGER" property="arId" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, tel, sex, photo, level, integral, SVIPTime, wbtype, u_type, u_ticket, password
+    id, `name`, tel, sex, photo, `level`, integral, SVIPTime, wbtype, u_type, u_ticket, password, ar_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -29,15 +30,15 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.dlx.ababy.entity.User">
-    insert into user (id, name, tel, 
-      sex, photo, level, 
+    insert into user (id, `name`, tel,
+      sex, photo, `level`,
       integral, SVIPTime, wbtype, 
-      u_type, u_ticket, password
+      u_type, u_ticket, password, ar_id
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
       #{sex,jdbcType=INTEGER}, #{photo,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, 
       #{integral,jdbcType=BIGINT}, #{sviptime,jdbcType=DATE}, #{wbtype,jdbcType=INTEGER}, 
-      #{uType,jdbcType=INTEGER}, #{uTicket,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}
+      #{uType,jdbcType=INTEGER}, #{uTicket,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR, #{arId,jdbcType=INTEGER}}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.dlx.ababy.entity.User">
@@ -47,7 +48,7 @@
         id,
       </if>
       <if test="name != null">
-        name,
+        `name`,
       </if>
       <if test="tel != null">
         tel,
@@ -59,7 +60,7 @@
         photo,
       </if>
       <if test="level != null">
-        level,
+        `level`,
       </if>
       <if test="integral != null">
         integral,
@@ -78,6 +79,9 @@
       </if>
       <if test="password != null">
         password,
+      </if>
+      <if test="arId != null">
+        ar_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -117,13 +121,16 @@
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
+      <if test="arId != null">
+        #{arId,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.dlx.ababy.entity.User">
     update user
     <set>
       <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="tel != null">
         tel = #{tel,jdbcType=VARCHAR},
@@ -135,7 +142,7 @@
         photo = #{photo,jdbcType=VARCHAR},
       </if>
       <if test="level != null">
-        level = #{level,jdbcType=INTEGER},
+        `level` = #{level,jdbcType=INTEGER},
       </if>
       <if test="integral != null">
         integral = #{integral,jdbcType=BIGINT},
@@ -155,6 +162,9 @@
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
       </if>
+      <if test="arId != null">
+        ar_id = #{arId,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -170,7 +180,14 @@
       wbtype = #{wbtype,jdbcType=INTEGER},
       u_type = #{uType,jdbcType=INTEGER},
       u_ticket = #{uTicket,jdbcType=INTEGER},
+      ar_id = #{arId,jdbcType=INTEGER},
       password = #{password,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where `name` = #{name,jdbcType=INTEGER}
+  </select>
 </mapper>

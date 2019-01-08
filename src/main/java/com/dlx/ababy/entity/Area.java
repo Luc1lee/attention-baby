@@ -5,6 +5,8 @@ public class Area {
 
     private String arName;
 
+    private Integer arCtId;
+
     public Integer getArId() {
         return arId;
     }
@@ -19,5 +21,13 @@ public class Area {
 
     public void setArName(String arName) {
         this.arName = arName == null ? null : arName.trim();
+    }
+
+    public Integer getArCtId() {
+        return arCtId;
+    }
+
+    public void setArCtId(Integer arCtId) {
+        this.arCtId = arCtId;
     }
 }

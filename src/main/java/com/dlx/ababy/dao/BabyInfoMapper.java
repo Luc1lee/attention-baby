@@ -2,6 +2,8 @@ package com.dlx.ababy.dao;
 
 import com.dlx.ababy.entity.BabyInfo;
 
+import java.util.List;
+
 public interface BabyInfoMapper {
     int deleteByPrimaryKey(Integer biId);
 
@@ -14,4 +16,6 @@ public interface BabyInfoMapper {
     int updateByPrimaryKeySelective(BabyInfo record);
 
     int updateByPrimaryKey(BabyInfo record);
+
+    List<BabyInfo> findByBId(Integer biBId);
 }

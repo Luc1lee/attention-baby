@@ -4,9 +4,10 @@
   <resultMap id="BaseResultMap" type="com.dlx.ababy.entity.Area">
     <id column="ar_id" jdbcType="INTEGER" property="arId" />
     <result column="ar_name" jdbcType="VARCHAR" property="arName" />
+    <result column="ar_ct_id" jdbcType="VARCHAR" property="arCtId" />
   </resultMap>
   <sql id="Base_Column_List">
-    ar_id, ar_name
+    ar_id, ar_name, ar_ct_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -19,8 +20,8 @@
     where ar_id = #{arId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.dlx.ababy.entity.Area">
-    insert into area (ar_id, ar_name)
-    values (#{arId,jdbcType=INTEGER}, #{arName,jdbcType=VARCHAR})
+    insert into area (ar_id, ar_name, ar_ct_id)
+    values (#{arId,jdbcType=INTEGER}, #{arName,jdbcType=VARCHAR}, #{arCtId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Area">
     insert into area
@@ -31,6 +32,9 @@
       <if test="arName != null">
         ar_name,
       </if>
+      <if test="arCtId != null">
+        ar_ct_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="arId != null">
@@ -38,6 +42,9 @@
       </if>
       <if test="arName != null">
         #{arName,jdbcType=VARCHAR},
+      </if>
+      <if test="arCtId != null">
+        #{arCtId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -47,12 +54,22 @@
       <if test="arName != null">
         ar_name = #{arName,jdbcType=VARCHAR},
       </if>
+      <if test="arCtId != null">
+        ar_ct_id = #{arCtId,jdbcType=INTEGER}
+      </if>
     </set>
     where ar_id = #{arId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.Area">
     update area
     set ar_name = #{arName,jdbcType=VARCHAR}
+    ar_ct_id =  #{arCtId,jdbcType=INTEGER}
     where ar_id = #{arId,jdbcType=INTEGER}
   </update>
+  <select id="selectByCtId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from area
+    where ar_ct_id = #{arCtId,jdbcType=INTEGER}
+  </select>
 </mapper>

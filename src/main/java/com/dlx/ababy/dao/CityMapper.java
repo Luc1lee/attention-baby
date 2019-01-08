@@ -2,6 +2,8 @@ package com.dlx.ababy.dao;
 
 import com.dlx.ababy.entity.City;
 
+import java.util.List;
+
 public interface CityMapper {
     int deleteByPrimaryKey(Integer ctId);
 
@@ -14,4 +16,6 @@ public interface CityMapper {
     int updateByPrimaryKeySelective(City record);
 
     int updateByPrimaryKey(City record);
+
+    List<City> selectAll();
 }

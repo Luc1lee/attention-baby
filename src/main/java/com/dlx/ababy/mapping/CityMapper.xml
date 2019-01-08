@@ -55,4 +55,9 @@
     set ct_name = #{ctName,jdbcType=VARCHAR}
     where ct_id = #{ctId,jdbcType=INTEGER}
   </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from city
+  </select>
 </mapper>

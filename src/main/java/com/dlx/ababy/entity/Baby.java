@@ -15,6 +15,8 @@ public class Baby {
 
     private String babyPhoto;
 
+    private Integer babyUId;
+
     public Integer getbId() {
         return bId;
     }
@@ -61,5 +63,13 @@ public class Baby {
 
     public void setBabyPhoto(String babyPhoto) {
         this.babyPhoto = babyPhoto == null ? null : babyPhoto.trim();
+    }
+
+    public Integer getbabyUId() {
+        return babyUId;
+    }
+
+    public void setbabyUId(Integer babyUId) {
+        this.babyUId = babyUId;
     }
 }

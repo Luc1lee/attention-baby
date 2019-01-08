@@ -2,6 +2,8 @@ package com.dlx.ababy.dao;
 
 import com.dlx.ababy.entity.Area;
 
+import java.util.List;
+
 public interface AreaMapper {
     int deleteByPrimaryKey(Integer arId);
 
@@ -14,4 +16,6 @@ public interface AreaMapper {
     int updateByPrimaryKeySelective(Area record);
 
     int updateByPrimaryKey(Area record);
+
+    List<Area> selectByCtId(Integer arCtId);
 }

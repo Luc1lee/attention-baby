@@ -13,6 +13,8 @@ public class BabyInfo {
 
     private Date biDate;
 
+    private Integer biBId;
+
     public Integer getBiId() {
         return biId;
     }
@@ -52,4 +54,11 @@ public class BabyInfo {
     public void setBiDate(Date biDate) {
         this.biDate = biDate;
     }
+
+    public Integer getBiBId() { return biBId; }
+
+    public void setBiBId(Integer biBId) {
+        this.biBId = biBId;
+    }
+
 }

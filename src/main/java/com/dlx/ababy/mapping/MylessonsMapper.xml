@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlx.ababy.dao.MylessonsMapper">
+  <resultMap id="BaseResultMap" type="com.dlx.ababy.entity.Mylessons">
+    <id column="ml_id" jdbcType="INTEGER" property="mlId" />
+    <result column="ml_le_id" jdbcType="INTEGER" property="mlLeId" />
+    <result column="ml_u_id" jdbcType="INTEGER" property="mlUId" />
+  </resultMap>
+  <resultMap id="findLessonsResultMap" type="com.dlx.ababy.vo.MylessonsResultVo">
+    <id column="le_id" jdbcType="INTEGER" property="leId" />
+    <result column="le_name" jdbcType="CHAR" property="leName" />
+    <result column="md_url" jdbcType="VARCHAR" property="mdUrl" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ml_id, ml_le_id, ml_u_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from mylessons
+    where ml_id = #{mlId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mylessons
+    where ml_id = #{mlId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dlx.ababy.entity.Mylessons">
+    insert into mylessons (ml_id, ml_le_id, ml_u_id
+      )
+    values (#{mlId,jdbcType=INTEGER}, #{mlLeId,jdbcType=INTEGER}, #{mlUId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Mylessons">
+    insert into mylessons
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mlId != null">
+        ml_id,
+      </if>
+      <if test="mlLeId != null">
+        ml_le_id,
+      </if>
+      <if test="mlUId != null">
+        ml_u_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mlId != null">
+        #{mlId,jdbcType=INTEGER},
+      </if>
+      <if test="mlLeId != null">
+        #{mlLeId,jdbcType=INTEGER},
+      </if>
+      <if test="mlUId != null">
+        #{mlUId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlx.ababy.entity.Mylessons">
+    update mylessons
+    <set>
+      <if test="mlLeId != null">
+        ml_le_id = #{mlLeId,jdbcType=INTEGER},
+      </if>
+      <if test="mlUId != null">
+        ml_u_id = #{mlUId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ml_id = #{mlId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.Mylessons">
+    update mylessons
+    set ml_le_id = #{mlLeId,jdbcType=INTEGER},
+      ml_u_id = #{mlUId,jdbcType=INTEGER}
+    where ml_id = #{mlId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByUserPrimaryKey" parameterType="java.lang.Integer" resultMap="findLessonsResultMap">
+    SELECT le.le_id,le.le_name,md.md_url,i.img_url FROM mylessons ml
+    INNER JOIN lessons le
+    ON le.le_id = ml.ml_le_id
+    INNER JOIN media md
+    on le.le_md_id = md.md_id
+    INNER JOIN img i
+    ON md.md_id = i.img_md_id
+    INNER JOIN `user` u
+    ON u.id = ml_u_id
+    WHERE u.id =  #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

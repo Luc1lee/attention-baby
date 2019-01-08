@@ -5,11 +5,12 @@ import com.dlx.ababy.service.BabyInfoService;
 import com.qfedu.vo.ResultVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Api(produces = "育宝宝项目",value = "baby详细接口文档")
+@Api(produces = "育宝宝项目",value = "接口文档")
 @RestController
 @RequestMapping("/babyinfo")
 public class BabyInfoController {
@@ -17,16 +18,17 @@ public class BabyInfoController {
     @Autowired
     private BabyInfoService bis;
 
-    @ApiOperation(notes = "传baby详细信息，进行添加",tags = {"基本信息"},value = "添加baby详细信息接口")
+    @ApiOperation(notes = "传baby详细信息，进行添加",tags = {"对象"},value = "添加baby详细信息接口")
     @PostMapping("/add.do")
     @CrossOrigin
-    public ResultVo addBabyInfo(BabyInfo babyInfo){
+    public ResultVo addBabyInfo(@ApiParam(value = "对象")BabyInfo babyInfo){
         return bis.addBabyInfo(babyInfo);
     }
 
+    @ApiOperation(notes = "传宝宝id，进行查询，宝宝id（biBId）",tags = {"宝宝id"},value = "查询宝宝信息接口")
     @GetMapping("/findbybid.do")
     @CrossOrigin
-    public ResultVo findByBId(Integer biBId){
+    public ResultVo findByBId(@ApiParam(value = "宝宝id")Integer biBId){
         return bis.findByBId(biBId);
     }
 

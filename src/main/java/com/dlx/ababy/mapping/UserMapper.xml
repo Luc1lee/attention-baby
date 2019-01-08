@@ -38,7 +38,7 @@
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
       #{sex,jdbcType=INTEGER}, #{photo,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, 
       #{integral,jdbcType=BIGINT}, #{sviptime,jdbcType=DATE}, #{wbtype,jdbcType=INTEGER}, 
-      #{uType,jdbcType=INTEGER}, #{uTicket,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR} #{arId,jdbcType=INTEGER}
+      #{uType,jdbcType=INTEGER}, #{uTicket,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, #{arId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.dlx.ababy.entity.User">

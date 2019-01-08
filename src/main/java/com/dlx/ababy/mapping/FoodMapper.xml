@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlx.ababy.dao.FoodMapper">
+  <resultMap id="BaseResultMap" type="com.dlx.ababy.entity.Food">
+    <id column="fd_id" jdbcType="INTEGER" property="fdId" />
+    <result column="fd_name" jdbcType="VARCHAR" property="fdName" />
+    <result column="fd_info" jdbcType="VARCHAR" property="fdInfo" />
+    <result column="fd_type" jdbcType="INTEGER" property="fdType" />
+    <result column="fd_cook" jdbcType="VARCHAR" property="fdCook" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    fd_id, fd_name, fd_info, fd_type, fd_cook
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from food
+    where fd_id = #{fdId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from food
+    where fd_id = #{fdId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dlx.ababy.entity.Food">
+    insert into food (fd_id, fd_name, fd_info, 
+      fd_type, fd_cook)
+    values (#{fdId,jdbcType=INTEGER}, #{fdName,jdbcType=VARCHAR}, #{fdInfo,jdbcType=VARCHAR}, 
+      #{fdType,jdbcType=INTEGER}, #{fdCook,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Food">
+    insert into food
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fdId != null">
+        fd_id,
+      </if>
+      <if test="fdName != null">
+        fd_name,
+      </if>
+      <if test="fdInfo != null">
+        fd_info,
+      </if>
+      <if test="fdType != null">
+        fd_type,
+      </if>
+      <if test="fdCook != null">
+        fd_cook,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fdId != null">
+        #{fdId,jdbcType=INTEGER},
+      </if>
+      <if test="fdName != null">
+        #{fdName,jdbcType=VARCHAR},
+      </if>
+      <if test="fdInfo != null">
+        #{fdInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="fdType != null">
+        #{fdType,jdbcType=INTEGER},
+      </if>
+      <if test="fdCook != null">
+        #{fdCook,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlx.ababy.entity.Food">
+    update food
+    <set>
+      <if test="fdName != null">
+        fd_name = #{fdName,jdbcType=VARCHAR},
+      </if>
+      <if test="fdInfo != null">
+        fd_info = #{fdInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="fdType != null">
+        fd_type = #{fdType,jdbcType=INTEGER},
+      </if>
+      <if test="fdCook != null">
+        fd_cook = #{fdCook,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fd_id = #{fdId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.Food">
+    update food
+    set fd_name = #{fdName,jdbcType=VARCHAR},
+      fd_info = #{fdInfo,jdbcType=VARCHAR},
+      fd_type = #{fdType,jdbcType=INTEGER},
+      fd_cook = #{fdCook,jdbcType=VARCHAR}
+    where fd_id = #{fdId,jdbcType=INTEGER}
+  </update>
+</mapper>

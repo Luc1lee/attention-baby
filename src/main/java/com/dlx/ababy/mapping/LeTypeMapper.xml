@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlx.ababy.dao.LeTypeMapper">
+  <resultMap id="BaseResultMap" type="com.dlx.ababy.entity.LeType">
+    <id column="lt_id" jdbcType="INTEGER" property="ltId" />
+    <result column="lt_name" jdbcType="VARCHAR" property="ltName" />
+    <result column="lt_parentid" jdbcType="INTEGER" property="ltParentid" />
+    <result column="lt_level" jdbcType="INTEGER" property="ltLevel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    lt_id, lt_name, lt_parentid, lt_level
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from le_type
+    where lt_id = #{ltId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from le_type
+    where lt_id = #{ltId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dlx.ababy.entity.LeType">
+    insert into le_type (lt_id, lt_name, lt_parentid, 
+      lt_level)
+    values (#{ltId,jdbcType=INTEGER}, #{ltName,jdbcType=VARCHAR}, #{ltParentid,jdbcType=INTEGER}, 
+      #{ltLevel,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlx.ababy.entity.LeType">
+    insert into le_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ltId != null">
+        lt_id,
+      </if>
+      <if test="ltName != null">
+        lt_name,
+      </if>
+      <if test="ltParentid != null">
+        lt_parentid,
+      </if>
+      <if test="ltLevel != null">
+        lt_level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ltId != null">
+        #{ltId,jdbcType=INTEGER},
+      </if>
+      <if test="ltName != null">
+        #{ltName,jdbcType=VARCHAR},
+      </if>
+      <if test="ltParentid != null">
+        #{ltParentid,jdbcType=INTEGER},
+      </if>
+      <if test="ltLevel != null">
+        #{ltLevel,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlx.ababy.entity.LeType">
+    update le_type
+    <set>
+      <if test="ltName != null">
+        lt_name = #{ltName,jdbcType=VARCHAR},
+      </if>
+      <if test="ltParentid != null">
+        lt_parentid = #{ltParentid,jdbcType=INTEGER},
+      </if>
+      <if test="ltLevel != null">
+        lt_level = #{ltLevel,jdbcType=INTEGER},
+      </if>
+    </set>
+    where lt_id = #{ltId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.LeType">
+    update le_type
+    set lt_name = #{ltName,jdbcType=VARCHAR},
+      lt_parentid = #{ltParentid,jdbcType=INTEGER},
+      lt_level = #{ltLevel,jdbcType=INTEGER}
+    where lt_id = #{ltId,jdbcType=INTEGER}
+  </update>
+</mapper>

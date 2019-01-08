@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlx.ababy.dao.ImgMapper">
+  <resultMap id="BaseResultMap" type="com.dlx.ababy.entity.Img">
+    <id column="img_id" jdbcType="INTEGER" property="imgId" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="img_com_id" jdbcType="INTEGER" property="imgComId" />
+    <result column="img_cmt_id" jdbcType="INTEGER" property="imgCmtId" />
+    <result column="img_md_id" jdbcType="INTEGER" property="imgMdId" />
+    <result column="img_fd_id" jdbcType="INTEGER" property="imgFdId" />
+    <result column="img_op_id" jdbcType="INTEGER" property="imgOpId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    img_id, img_url, img_com_id, img_cmt_id, img_md_id, img_fd_id, img_op_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from img
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from img
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dlx.ababy.entity.Img">
+    insert into img (img_id, img_url, img_com_id, 
+      img_cmt_id, img_md_id, img_fd_id, 
+      img_op_id)
+    values (#{imgId,jdbcType=INTEGER}, #{imgUrl,jdbcType=VARCHAR}, #{imgComId,jdbcType=INTEGER}, 
+      #{imgCmtId,jdbcType=INTEGER}, #{imgMdId,jdbcType=INTEGER}, #{imgFdId,jdbcType=INTEGER}, 
+      #{imgOpId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Img">
+    insert into img
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="imgId != null">
+        img_id,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="imgComId != null">
+        img_com_id,
+      </if>
+      <if test="imgCmtId != null">
+        img_cmt_id,
+      </if>
+      <if test="imgMdId != null">
+        img_md_id,
+      </if>
+      <if test="imgFdId != null">
+        img_fd_id,
+      </if>
+      <if test="imgOpId != null">
+        img_op_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="imgId != null">
+        #{imgId,jdbcType=INTEGER},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgComId != null">
+        #{imgComId,jdbcType=INTEGER},
+      </if>
+      <if test="imgCmtId != null">
+        #{imgCmtId,jdbcType=INTEGER},
+      </if>
+      <if test="imgMdId != null">
+        #{imgMdId,jdbcType=INTEGER},
+      </if>
+      <if test="imgFdId != null">
+        #{imgFdId,jdbcType=INTEGER},
+      </if>
+      <if test="imgOpId != null">
+        #{imgOpId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlx.ababy.entity.Img">
+    update img
+    <set>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgComId != null">
+        img_com_id = #{imgComId,jdbcType=INTEGER},
+      </if>
+      <if test="imgCmtId != null">
+        img_cmt_id = #{imgCmtId,jdbcType=INTEGER},
+      </if>
+      <if test="imgMdId != null">
+        img_md_id = #{imgMdId,jdbcType=INTEGER},
+      </if>
+      <if test="imgFdId != null">
+        img_fd_id = #{imgFdId,jdbcType=INTEGER},
+      </if>
+      <if test="imgOpId != null">
+        img_op_id = #{imgOpId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.Img">
+    update img
+    set img_url = #{imgUrl,jdbcType=VARCHAR},
+      img_com_id = #{imgComId,jdbcType=INTEGER},
+      img_cmt_id = #{imgCmtId,jdbcType=INTEGER},
+      img_md_id = #{imgMdId,jdbcType=INTEGER},
+      img_fd_id = #{imgFdId,jdbcType=INTEGER},
+      img_op_id = #{imgOpId,jdbcType=INTEGER}
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </update>
+</mapper>

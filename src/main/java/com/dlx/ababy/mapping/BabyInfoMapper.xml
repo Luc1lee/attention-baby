@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlx.ababy.dao.BabyInfoMapper">
+  <resultMap id="BaseResultMap" type="com.dlx.ababy.entity.BabyInfo">
+    <id column="bi_id" jdbcType="INTEGER" property="biId" />
+    <result column="bi_info" jdbcType="VARCHAR" property="biInfo" />
+    <result column="bi_weight" jdbcType="INTEGER" property="biWeight" />
+    <result column="bi_hinght" jdbcType="INTEGER" property="biHinght" />
+    <result column="bi_date" jdbcType="DATE" property="biDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bi_id, bi_info, bi_weight, bi_hinght, bi_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from baby_info
+    where bi_id = #{biId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from baby_info
+    where bi_id = #{biId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dlx.ababy.entity.BabyInfo">
+    insert into baby_info (bi_id, bi_info, bi_weight, 
+      bi_hinght, bi_date)
+    values (#{biId,jdbcType=INTEGER}, #{biInfo,jdbcType=VARCHAR}, #{biWeight,jdbcType=INTEGER}, 
+      #{biHinght,jdbcType=INTEGER}, #{biDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlx.ababy.entity.BabyInfo">
+    insert into baby_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="biId != null">
+        bi_id,
+      </if>
+      <if test="biInfo != null">
+        bi_info,
+      </if>
+      <if test="biWeight != null">
+        bi_weight,
+      </if>
+      <if test="biHinght != null">
+        bi_hinght,
+      </if>
+      <if test="biDate != null">
+        bi_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="biId != null">
+        #{biId,jdbcType=INTEGER},
+      </if>
+      <if test="biInfo != null">
+        #{biInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="biWeight != null">
+        #{biWeight,jdbcType=INTEGER},
+      </if>
+      <if test="biHinght != null">
+        #{biHinght,jdbcType=INTEGER},
+      </if>
+      <if test="biDate != null">
+        #{biDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlx.ababy.entity.BabyInfo">
+    update baby_info
+    <set>
+      <if test="biInfo != null">
+        bi_info = #{biInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="biWeight != null">
+        bi_weight = #{biWeight,jdbcType=INTEGER},
+      </if>
+      <if test="biHinght != null">
+        bi_hinght = #{biHinght,jdbcType=INTEGER},
+      </if>
+      <if test="biDate != null">
+        bi_date = #{biDate,jdbcType=DATE},
+      </if>
+    </set>
+    where bi_id = #{biId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.BabyInfo">
+    update baby_info
+    set bi_info = #{biInfo,jdbcType=VARCHAR},
+      bi_weight = #{biWeight,jdbcType=INTEGER},
+      bi_hinght = #{biHinght,jdbcType=INTEGER},
+      bi_date = #{biDate,jdbcType=DATE}
+    where bi_id = #{biId,jdbcType=INTEGER}
+  </update>
+</mapper>

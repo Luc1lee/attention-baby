@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlx.ababy.dao.MediaMapper">
+  <resultMap id="BaseResultMap" type="com.dlx.ababy.entity.Media">
+    <id column="md_id" jdbcType="INTEGER" property="mdId" />
+    <result column="md_name" jdbcType="VARCHAR" property="mdName" />
+    <result column="md_url" jdbcType="VARCHAR" property="mdUrl" />
+    <result column="md_th_id" jdbcType="INTEGER" property="mdThId" />
+    <result column="md_info" jdbcType="VARCHAR" property="mdInfo" />
+    <result column="md_type" jdbcType="INTEGER" property="mdType" />
+    <result column="md_price" jdbcType="DOUBLE" property="mdPrice" />
+    <result column="md_num" jdbcType="INTEGER" property="mdNum" />
+    <result column="md_mm_id" jdbcType="INTEGER" property="mdMmId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    md_id, md_name, md_url, md_th_id, md_info, md_type, md_price, md_num, md_mm_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from media
+    where md_id = #{mdId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from media
+    where md_id = #{mdId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dlx.ababy.entity.Media">
+    insert into media (md_id, md_name, md_url, 
+      md_th_id, md_info, md_type, 
+      md_price, md_num, md_mm_id
+      )
+    values (#{mdId,jdbcType=INTEGER}, #{mdName,jdbcType=VARCHAR}, #{mdUrl,jdbcType=VARCHAR}, 
+      #{mdThId,jdbcType=INTEGER}, #{mdInfo,jdbcType=VARCHAR}, #{mdType,jdbcType=INTEGER}, 
+      #{mdPrice,jdbcType=DOUBLE}, #{mdNum,jdbcType=INTEGER}, #{mdMmId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Media">
+    insert into media
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mdId != null">
+        md_id,
+      </if>
+      <if test="mdName != null">
+        md_name,
+      </if>
+      <if test="mdUrl != null">
+        md_url,
+      </if>
+      <if test="mdThId != null">
+        md_th_id,
+      </if>
+      <if test="mdInfo != null">
+        md_info,
+      </if>
+      <if test="mdType != null">
+        md_type,
+      </if>
+      <if test="mdPrice != null">
+        md_price,
+      </if>
+      <if test="mdNum != null">
+        md_num,
+      </if>
+      <if test="mdMmId != null">
+        md_mm_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mdId != null">
+        #{mdId,jdbcType=INTEGER},
+      </if>
+      <if test="mdName != null">
+        #{mdName,jdbcType=VARCHAR},
+      </if>
+      <if test="mdUrl != null">
+        #{mdUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="mdThId != null">
+        #{mdThId,jdbcType=INTEGER},
+      </if>
+      <if test="mdInfo != null">
+        #{mdInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="mdType != null">
+        #{mdType,jdbcType=INTEGER},
+      </if>
+      <if test="mdPrice != null">
+        #{mdPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="mdNum != null">
+        #{mdNum,jdbcType=INTEGER},
+      </if>
+      <if test="mdMmId != null">
+        #{mdMmId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlx.ababy.entity.Media">
+    update media
+    <set>
+      <if test="mdName != null">
+        md_name = #{mdName,jdbcType=VARCHAR},
+      </if>
+      <if test="mdUrl != null">
+        md_url = #{mdUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="mdThId != null">
+        md_th_id = #{mdThId,jdbcType=INTEGER},
+      </if>
+      <if test="mdInfo != null">
+        md_info = #{mdInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="mdType != null">
+        md_type = #{mdType,jdbcType=INTEGER},
+      </if>
+      <if test="mdPrice != null">
+        md_price = #{mdPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="mdNum != null">
+        md_num = #{mdNum,jdbcType=INTEGER},
+      </if>
+      <if test="mdMmId != null">
+        md_mm_id = #{mdMmId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where md_id = #{mdId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.Media">
+    update media
+    set md_name = #{mdName,jdbcType=VARCHAR},
+      md_url = #{mdUrl,jdbcType=VARCHAR},
+      md_th_id = #{mdThId,jdbcType=INTEGER},
+      md_info = #{mdInfo,jdbcType=VARCHAR},
+      md_type = #{mdType,jdbcType=INTEGER},
+      md_price = #{mdPrice,jdbcType=DOUBLE},
+      md_num = #{mdNum,jdbcType=INTEGER},
+      md_mm_id = #{mdMmId,jdbcType=INTEGER}
+    where md_id = #{mdId,jdbcType=INTEGER}
+  </update>
+</mapper>

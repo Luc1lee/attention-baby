@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlx.ababy.dao.BabyMapper">
+  <resultMap id="BaseResultMap" type="com.dlx.ababy.entity.Baby">
+    <id column="b_id" jdbcType="INTEGER" property="bId" />
+    <result column="baby_name" jdbcType="VARCHAR" property="babyName" />
+    <result column="baby_sex" jdbcType="INTEGER" property="babySex" />
+    <result column="baby_birthday" jdbcType="DATE" property="babyBirthday" />
+    <result column="baby_duedate" jdbcType="DATE" property="babyDuedate" />
+    <result column="baby_photo" jdbcType="VARCHAR" property="babyPhoto" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    b_id, baby_name, baby_sex, baby_birthday, baby_duedate, baby_photo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from baby
+    where b_id = #{bId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from baby
+    where b_id = #{bId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dlx.ababy.entity.Baby">
+    insert into baby (b_id, baby_name, baby_sex, 
+      baby_birthday, baby_duedate, baby_photo
+      )
+    values (#{bId,jdbcType=INTEGER}, #{babyName,jdbcType=VARCHAR}, #{babySex,jdbcType=INTEGER}, 
+      #{babyBirthday,jdbcType=DATE}, #{babyDuedate,jdbcType=DATE}, #{babyPhoto,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Baby">
+    insert into baby
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bId != null">
+        b_id,
+      </if>
+      <if test="babyName != null">
+        baby_name,
+      </if>
+      <if test="babySex != null">
+        baby_sex,
+      </if>
+      <if test="babyBirthday != null">
+        baby_birthday,
+      </if>
+      <if test="babyDuedate != null">
+        baby_duedate,
+      </if>
+      <if test="babyPhoto != null">
+        baby_photo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bId != null">
+        #{bId,jdbcType=INTEGER},
+      </if>
+      <if test="babyName != null">
+        #{babyName,jdbcType=VARCHAR},
+      </if>
+      <if test="babySex != null">
+        #{babySex,jdbcType=INTEGER},
+      </if>
+      <if test="babyBirthday != null">
+        #{babyBirthday,jdbcType=DATE},
+      </if>
+      <if test="babyDuedate != null">
+        #{babyDuedate,jdbcType=DATE},
+      </if>
+      <if test="babyPhoto != null">
+        #{babyPhoto,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlx.ababy.entity.Baby">
+    update baby
+    <set>
+      <if test="babyName != null">
+        baby_name = #{babyName,jdbcType=VARCHAR},
+      </if>
+      <if test="babySex != null">
+        baby_sex = #{babySex,jdbcType=INTEGER},
+      </if>
+      <if test="babyBirthday != null">
+        baby_birthday = #{babyBirthday,jdbcType=DATE},
+      </if>
+      <if test="babyDuedate != null">
+        baby_duedate = #{babyDuedate,jdbcType=DATE},
+      </if>
+      <if test="babyPhoto != null">
+        baby_photo = #{babyPhoto,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where b_id = #{bId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.Baby">
+    update baby
+    set baby_name = #{babyName,jdbcType=VARCHAR},
+      baby_sex = #{babySex,jdbcType=INTEGER},
+      baby_birthday = #{babyBirthday,jdbcType=DATE},
+      baby_duedate = #{babyDuedate,jdbcType=DATE},
+      baby_photo = #{babyPhoto,jdbcType=VARCHAR}
+    where b_id = #{bId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlx.ababy.dao.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.dlx.ababy.entity.Comment">
+    <id column="cmt_id" jdbcType="INTEGER" property="cmtId" />
+    <result column="cmt_info" jdbcType="VARCHAR" property="cmtInfo" />
+    <result column="cmt_u_id" jdbcType="INTEGER" property="cmtUId" />
+    <result column="cmt_date" jdbcType="TIMESTAMP" property="cmtDate" />
+    <result column="cmt_parent_id" jdbcType="INTEGER" property="cmtParentId" />
+    <result column="cmt_likenum" jdbcType="INTEGER" property="cmtLikenum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cmt_id, cmt_info, cmt_u_id, cmt_date, cmt_parent_id, cmt_likenum
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where cmt_id = #{cmtId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from comment
+    where cmt_id = #{cmtId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dlx.ababy.entity.Comment">
+    insert into comment (cmt_id, cmt_info, cmt_u_id, 
+      cmt_date, cmt_parent_id, cmt_likenum
+      )
+    values (#{cmtId,jdbcType=INTEGER}, #{cmtInfo,jdbcType=VARCHAR}, #{cmtUId,jdbcType=INTEGER}, 
+      #{cmtDate,jdbcType=TIMESTAMP}, #{cmtParentId,jdbcType=INTEGER}, #{cmtLikenum,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Comment">
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cmtId != null">
+        cmt_id,
+      </if>
+      <if test="cmtInfo != null">
+        cmt_info,
+      </if>
+      <if test="cmtUId != null">
+        cmt_u_id,
+      </if>
+      <if test="cmtDate != null">
+        cmt_date,
+      </if>
+      <if test="cmtParentId != null">
+        cmt_parent_id,
+      </if>
+      <if test="cmtLikenum != null">
+        cmt_likenum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cmtId != null">
+        #{cmtId,jdbcType=INTEGER},
+      </if>
+      <if test="cmtInfo != null">
+        #{cmtInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="cmtUId != null">
+        #{cmtUId,jdbcType=INTEGER},
+      </if>
+      <if test="cmtDate != null">
+        #{cmtDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cmtParentId != null">
+        #{cmtParentId,jdbcType=INTEGER},
+      </if>
+      <if test="cmtLikenum != null">
+        #{cmtLikenum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlx.ababy.entity.Comment">
+    update comment
+    <set>
+      <if test="cmtInfo != null">
+        cmt_info = #{cmtInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="cmtUId != null">
+        cmt_u_id = #{cmtUId,jdbcType=INTEGER},
+      </if>
+      <if test="cmtDate != null">
+        cmt_date = #{cmtDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cmtParentId != null">
+        cmt_parent_id = #{cmtParentId,jdbcType=INTEGER},
+      </if>
+      <if test="cmtLikenum != null">
+        cmt_likenum = #{cmtLikenum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where cmt_id = #{cmtId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.Comment">
+    update comment
+    set cmt_info = #{cmtInfo,jdbcType=VARCHAR},
+      cmt_u_id = #{cmtUId,jdbcType=INTEGER},
+      cmt_date = #{cmtDate,jdbcType=TIMESTAMP},
+      cmt_parent_id = #{cmtParentId,jdbcType=INTEGER},
+      cmt_likenum = #{cmtLikenum,jdbcType=INTEGER}
+    where cmt_id = #{cmtId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlx.ababy.dao.MusicmenuMapper">
+  <resultMap id="BaseResultMap" type="com.dlx.ababy.entity.Musicmenu">
+    <id column="mm_id" jdbcType="INTEGER" property="mmId" />
+    <result column="mm_u_id" jdbcType="INTEGER" property="mmUId" />
+    <result column="mm_name" jdbcType="VARCHAR" property="mmName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    mm_id, mm_u_id, mm_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from musicmenu
+    where mm_id = #{mmId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from musicmenu
+    where mm_id = #{mmId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dlx.ababy.entity.Musicmenu">
+    insert into musicmenu (mm_id, mm_u_id, mm_name
+      )
+    values (#{mmId,jdbcType=INTEGER}, #{mmUId,jdbcType=INTEGER}, #{mmName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Musicmenu">
+    insert into musicmenu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mmId != null">
+        mm_id,
+      </if>
+      <if test="mmUId != null">
+        mm_u_id,
+      </if>
+      <if test="mmName != null">
+        mm_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mmId != null">
+        #{mmId,jdbcType=INTEGER},
+      </if>
+      <if test="mmUId != null">
+        #{mmUId,jdbcType=INTEGER},
+      </if>
+      <if test="mmName != null">
+        #{mmName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlx.ababy.entity.Musicmenu">
+    update musicmenu
+    <set>
+      <if test="mmUId != null">
+        mm_u_id = #{mmUId,jdbcType=INTEGER},
+      </if>
+      <if test="mmName != null">
+        mm_name = #{mmName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mm_id = #{mmId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.Musicmenu">
+    update musicmenu
+    set mm_u_id = #{mmUId,jdbcType=INTEGER},
+      mm_name = #{mmName,jdbcType=VARCHAR}
+    where mm_id = #{mmId,jdbcType=INTEGER}
+  </update>
+</mapper>

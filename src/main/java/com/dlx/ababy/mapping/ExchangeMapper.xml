@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlx.ababy.dao.ExchangeMapper">
+  <resultMap id="BaseResultMap" type="com.dlx.ababy.entity.Exchange">
+    <id column="ec_id" jdbcType="INTEGER" property="ecId" />
+    <result column="ec_info" jdbcType="VARCHAR" property="ecInfo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ec_id, ec_info
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from exchange
+    where ec_id = #{ecId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from exchange
+    where ec_id = #{ecId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dlx.ababy.entity.Exchange">
+    insert into exchange (ec_id, ec_info)
+    values (#{ecId,jdbcType=INTEGER}, #{ecInfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Exchange">
+    insert into exchange
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ecId != null">
+        ec_id,
+      </if>
+      <if test="ecInfo != null">
+        ec_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ecId != null">
+        #{ecId,jdbcType=INTEGER},
+      </if>
+      <if test="ecInfo != null">
+        #{ecInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlx.ababy.entity.Exchange">
+    update exchange
+    <set>
+      <if test="ecInfo != null">
+        ec_info = #{ecInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ec_id = #{ecId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.Exchange">
+    update exchange
+    set ec_info = #{ecInfo,jdbcType=VARCHAR}
+    where ec_id = #{ecId,jdbcType=INTEGER}
+  </update>
+</mapper>

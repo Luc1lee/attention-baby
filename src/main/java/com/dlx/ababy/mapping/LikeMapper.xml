@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlx.ababy.dao.LikeMapper">
+  <resultMap id="BaseResultMap" type="com.dlx.ababy.entity.Like">
+    <id column="lk_id" jdbcType="INTEGER" property="lkId" />
+    <result column="lk_com_id" jdbcType="INTEGER" property="lkComId" />
+    <result column="lk_cmt_id" jdbcType="INTEGER" property="lkCmtId" />
+    <result column="lk_u_id" jdbcType="INTEGER" property="lkUId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    lk_id, lk_com_id, lk_cmt_id, lk_u_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from like
+    where lk_id = #{lkId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from like
+    where lk_id = #{lkId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dlx.ababy.entity.Like">
+    insert into like (lk_id, lk_com_id, lk_cmt_id, 
+      lk_u_id)
+    values (#{lkId,jdbcType=INTEGER}, #{lkComId,jdbcType=INTEGER}, #{lkCmtId,jdbcType=INTEGER}, 
+      #{lkUId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Like">
+    insert into like
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lkId != null">
+        lk_id,
+      </if>
+      <if test="lkComId != null">
+        lk_com_id,
+      </if>
+      <if test="lkCmtId != null">
+        lk_cmt_id,
+      </if>
+      <if test="lkUId != null">
+        lk_u_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lkId != null">
+        #{lkId,jdbcType=INTEGER},
+      </if>
+      <if test="lkComId != null">
+        #{lkComId,jdbcType=INTEGER},
+      </if>
+      <if test="lkCmtId != null">
+        #{lkCmtId,jdbcType=INTEGER},
+      </if>
+      <if test="lkUId != null">
+        #{lkUId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlx.ababy.entity.Like">
+    update like
+    <set>
+      <if test="lkComId != null">
+        lk_com_id = #{lkComId,jdbcType=INTEGER},
+      </if>
+      <if test="lkCmtId != null">
+        lk_cmt_id = #{lkCmtId,jdbcType=INTEGER},
+      </if>
+      <if test="lkUId != null">
+        lk_u_id = #{lkUId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where lk_id = #{lkId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.Like">
+    update like
+    set lk_com_id = #{lkComId,jdbcType=INTEGER},
+      lk_cmt_id = #{lkCmtId,jdbcType=INTEGER},
+      lk_u_id = #{lkUId,jdbcType=INTEGER}
+    where lk_id = #{lkId,jdbcType=INTEGER}
+  </update>
+</mapper>

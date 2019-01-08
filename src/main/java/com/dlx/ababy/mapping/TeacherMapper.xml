@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlx.ababy.dao.TeacherMapper">
+  <resultMap id="BaseResultMap" type="com.dlx.ababy.entity.Teacher">
+    <id column="th_id" jdbcType="INTEGER" property="thId" />
+    <result column="th_name" jdbcType="VARCHAR" property="thName" />
+    <result column="th_photo" jdbcType="VARCHAR" property="thPhoto" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    th_id, th_name, th_photo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from teacher
+    where th_id = #{thId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from teacher
+    where th_id = #{thId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dlx.ababy.entity.Teacher">
+    insert into teacher (th_id, th_name, th_photo
+      )
+    values (#{thId,jdbcType=INTEGER}, #{thName,jdbcType=VARCHAR}, #{thPhoto,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Teacher">
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="thId != null">
+        th_id,
+      </if>
+      <if test="thName != null">
+        th_name,
+      </if>
+      <if test="thPhoto != null">
+        th_photo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="thId != null">
+        #{thId,jdbcType=INTEGER},
+      </if>
+      <if test="thName != null">
+        #{thName,jdbcType=VARCHAR},
+      </if>
+      <if test="thPhoto != null">
+        #{thPhoto,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlx.ababy.entity.Teacher">
+    update teacher
+    <set>
+      <if test="thName != null">
+        th_name = #{thName,jdbcType=VARCHAR},
+      </if>
+      <if test="thPhoto != null">
+        th_photo = #{thPhoto,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where th_id = #{thId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.Teacher">
+    update teacher
+    set th_name = #{thName,jdbcType=VARCHAR},
+      th_photo = #{thPhoto,jdbcType=VARCHAR}
+    where th_id = #{thId,jdbcType=INTEGER}
+  </update>
+</mapper>

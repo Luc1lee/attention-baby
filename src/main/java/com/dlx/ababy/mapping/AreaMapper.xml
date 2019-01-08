@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlx.ababy.dao.AreaMapper">
+  <resultMap id="BaseResultMap" type="com.dlx.ababy.entity.Area">
+    <id column="ar_id" jdbcType="INTEGER" property="arId" />
+    <result column="ar_name" jdbcType="VARCHAR" property="arName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ar_id, ar_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from area
+    where ar_id = #{arId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from area
+    where ar_id = #{arId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dlx.ababy.entity.Area">
+    insert into area (ar_id, ar_name)
+    values (#{arId,jdbcType=INTEGER}, #{arName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Area">
+    insert into area
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="arId != null">
+        ar_id,
+      </if>
+      <if test="arName != null">
+        ar_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="arId != null">
+        #{arId,jdbcType=INTEGER},
+      </if>
+      <if test="arName != null">
+        #{arName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlx.ababy.entity.Area">
+    update area
+    <set>
+      <if test="arName != null">
+        ar_name = #{arName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ar_id = #{arId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.Area">
+    update area
+    set ar_name = #{arName,jdbcType=VARCHAR}
+    where ar_id = #{arId,jdbcType=INTEGER}
+  </update>
+</mapper>

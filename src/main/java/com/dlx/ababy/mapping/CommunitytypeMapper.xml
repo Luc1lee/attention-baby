@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlx.ababy.dao.CommunitytypeMapper">
+  <resultMap id="BaseResultMap" type="com.dlx.ababy.entity.Communitytype">
+    <id column="comty_id" jdbcType="INTEGER" property="comtyId" />
+    <result column="comty_type" jdbcType="INTEGER" property="comtyType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    comty_id, comty_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from communitytype
+    where comty_id = #{comtyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from communitytype
+    where comty_id = #{comtyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dlx.ababy.entity.Communitytype">
+    insert into communitytype (comty_id, comty_type)
+    values (#{comtyId,jdbcType=INTEGER}, #{comtyType,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Communitytype">
+    insert into communitytype
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="comtyId != null">
+        comty_id,
+      </if>
+      <if test="comtyType != null">
+        comty_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="comtyId != null">
+        #{comtyId,jdbcType=INTEGER},
+      </if>
+      <if test="comtyType != null">
+        #{comtyType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlx.ababy.entity.Communitytype">
+    update communitytype
+    <set>
+      <if test="comtyType != null">
+        comty_type = #{comtyType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where comty_id = #{comtyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.Communitytype">
+    update communitytype
+    set comty_type = #{comtyType,jdbcType=INTEGER}
+    where comty_id = #{comtyId,jdbcType=INTEGER}
+  </update>
+</mapper>

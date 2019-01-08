@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlx.ababy.dao.MycollectionMapper">
+  <resultMap id="BaseResultMap" type="com.dlx.ababy.entity.Mycollection">
+    <id column="mc_id" jdbcType="INTEGER" property="mcId" />
+    <result column="mc_le_id" jdbcType="INTEGER" property="mcLeId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    mc_id, mc_le_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mycollection
+    where mc_id = #{mcId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mycollection
+    where mc_id = #{mcId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dlx.ababy.entity.Mycollection">
+    insert into mycollection (mc_id, mc_le_id)
+    values (#{mcId,jdbcType=INTEGER}, #{mcLeId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Mycollection">
+    insert into mycollection
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mcId != null">
+        mc_id,
+      </if>
+      <if test="mcLeId != null">
+        mc_le_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mcId != null">
+        #{mcId,jdbcType=INTEGER},
+      </if>
+      <if test="mcLeId != null">
+        #{mcLeId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dlx.ababy.entity.Mycollection">
+    update mycollection
+    <set>
+      <if test="mcLeId != null">
+        mc_le_id = #{mcLeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where mc_id = #{mcId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.Mycollection">
+    update mycollection
+    set mc_le_id = #{mcLeId,jdbcType=INTEGER}
+    where mc_id = #{mcId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -20,7 +20,7 @@
     delete from opinion
     where op_id = #{opId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.dlx.ababy.entity.Opinion">
+  <insert id="insert" parameterType="com.dlx.ababy.entity.Opinion" useGeneratedKeys="true" keyProperty="aId">
     insert into opinion (op_id, u_id, op_info, 
       op_tel)
     values (#{opId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{opInfo,jdbcType=VARCHAR}, 

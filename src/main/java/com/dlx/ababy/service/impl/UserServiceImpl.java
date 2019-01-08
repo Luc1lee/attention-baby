@@ -83,4 +83,11 @@ public class UserServiceImpl implements UserService {
 
         return null;
     }
+
+    @Override
+    public ResultVo findById(Integer id) {
+        User user = um.selectByPrimaryKey(id);
+
+        return ResultVo.setOK(user);
+    }
 }

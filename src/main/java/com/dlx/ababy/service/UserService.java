@@ -11,4 +11,6 @@ public interface UserService {
     ResultVo updateByCondition(User user);
 
     ResultVo updateSVIP(Integer id);
+
+    ResultVo findById(Integer id);
 }

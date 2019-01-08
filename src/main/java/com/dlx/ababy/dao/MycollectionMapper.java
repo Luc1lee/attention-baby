@@ -2,6 +2,8 @@ package com.dlx.ababy.dao;
 
 import com.dlx.ababy.entity.Mycollection;
 
+import java.util.List;
+
 public interface MycollectionMapper {
     int deleteByPrimaryKey(Integer mcId);
 
@@ -14,4 +16,5 @@ public interface MycollectionMapper {
     int updateByPrimaryKeySelective(Mycollection record);
 
     int updateByPrimaryKey(Mycollection record);
+
 }

@@ -8,10 +8,11 @@
     <result column="baby_birthday" jdbcType="DATE" property="babyBirthday" />
     <result column="baby_duedate" jdbcType="DATE" property="babyDuedate" />
     <result column="baby_photo" jdbcType="VARCHAR" property="babyPhoto" />
-    <result column="baby_u_id" jdbcType="VARCHAR" property="babyUId" />
+    <result column="baby_u_id" jdbcType="INTEGER" property="babyUId" />
+    <result column="baby_relation" jdbcType="INTEGER" property="babyRelation" />
   </resultMap>
   <sql id="Base_Column_List">
-    b_id, baby_name, baby_sex, baby_birthday, baby_duedate, baby_photo, baby_u_id
+    b_id, baby_name, baby_sex, baby_birthday, baby_duedate, baby_photo, baby_u_id, baby_relation
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -25,10 +26,11 @@
   </delete>
   <insert id="insert" parameterType="com.dlx.ababy.entity.Baby">
     insert into baby (b_id, baby_name, baby_sex, 
-      baby_birthday, baby_duedate, baby_photo, baby_u_id
+      baby_birthday, baby_duedate, baby_photo, baby_u_id, baby_relation
       )
     values (#{bId,jdbcType=INTEGER}, #{babyName,jdbcType=VARCHAR}, #{babySex,jdbcType=INTEGER}, 
-      #{babyBirthday,jdbcType=DATE}, #{babyDuedate,jdbcType=DATE}, #{babyPhoto,jdbcType=VARCHAR, #{babyUId,jdbcType=INTEGER}}
+      #{babyBirthday,jdbcType=DATE}, #{babyDuedate,jdbcType=DATE}, #{babyPhoto,jdbcType=VARCHAR},
+      #{babyUId,jdbcType=INTEGER}, #{babyRelation,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Baby">
@@ -55,6 +57,9 @@
       <if test="babyUId != null">
         baby_u_id,
       </if>
+      <if test="babyRelation != null">
+        baby_relation,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="bId != null">
@@ -77,6 +82,9 @@
       </if>
       <if test="babyUId != null">
         #{babyUId,jdbcType=INTEGER},
+      </if>
+      <if test="babyRelation != null">
+        #{babyRelation,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -101,6 +109,9 @@
       <if test="babyUId != null">
         baby_u_id = #{babyUId,jdbcType=INTEGER},
       </if>
+      <if test="babyRelation != null">
+        baby_relation = #{babyRelation,jdbcType=INTEGER},
+      </if>
     </set>
     where b_id = #{bId,jdbcType=INTEGER}
   </update>
@@ -112,6 +123,7 @@
       baby_duedate = #{babyDuedate,jdbcType=DATE},
       baby_photo = #{babyPhoto,jdbcType=VARCHAR}
       baby_u_id = #{babyUId,jdbcType=INTEGER},
+      baby_relation = #{babyRelation,jdbcType=INTEGER}
     where b_id = #{bId,jdbcType=INTEGER}
   </update>
   <select id="selectByUId" parameterType="java.lang.Integer" resultMap="BaseResultMap">

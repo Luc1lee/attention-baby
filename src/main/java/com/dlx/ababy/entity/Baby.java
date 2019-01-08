@@ -17,11 +17,21 @@ public class Baby {
 
     private Integer babyUId;
 
-    public Integer getbId() {
+    private Integer babyRelation;
+
+    public Integer getBabyRelation() {
+        return babyRelation;
+    }
+
+    public void setBabyRelation(Integer babyRelation) {
+        this.babyRelation = babyRelation;
+    }
+
+    public Integer getBId() {
         return bId;
     }
 
-    public void setbId(Integer bId) {
+    public void setBId(Integer bId) {
         this.bId = bId;
     }
 

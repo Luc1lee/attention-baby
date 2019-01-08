@@ -5,10 +5,7 @@ import com.dlx.ababy.service.UserService;
 import com.qfedu.vo.ResultVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -41,5 +38,10 @@ public class UserController {
         return us.updateSVIP(id);
     }
 
+    @GetMapping("/findbyid.do")
+    @CrossOrigin
+    public ResultVo findById(Integer id){
+        return us.findById(id);
+    }
 
 }

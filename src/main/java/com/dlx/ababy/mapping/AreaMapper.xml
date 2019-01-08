@@ -62,7 +62,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.Area">
     update area
-    set ar_name = #{arName,jdbcType=VARCHAR}
+    set ar_name = #{arName,jdbcType=VARCHAR},
     ar_ct_id =  #{arCtId,jdbcType=INTEGER}
     where ar_id = #{arId,jdbcType=INTEGER}
   </update>

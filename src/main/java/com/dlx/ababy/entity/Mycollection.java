@@ -5,6 +5,8 @@ public class Mycollection {
 
     private Integer mcLeId;
 
+    private Integer mcUId;
+
     public Integer getMcId() {
         return mcId;
     }
@@ -19,5 +21,13 @@ public class Mycollection {
 
     public void setMcLeId(Integer mcLeId) {
         this.mcLeId = mcLeId;
+    }
+
+    public Integer getMcUId() {
+        return mcUId;
+    }
+
+    public void setMcUId(Integer mcUId) {
+        this.mcUId = mcUId;
     }
 }

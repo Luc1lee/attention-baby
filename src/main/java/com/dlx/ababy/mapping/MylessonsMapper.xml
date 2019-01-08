@@ -4,9 +4,10 @@
   <resultMap id="BaseResultMap" type="com.dlx.ababy.entity.Mylessons">
     <id column="ml_id" jdbcType="INTEGER" property="mlId" />
     <result column="ml_le_id" jdbcType="INTEGER" property="mlLeId" />
+    <result column="ml_u_id" jdbcType="INTEGER" property="mlUId" />
   </resultMap>
   <sql id="Base_Column_List">
-    ml_id, ml_le_id
+    ml_id, ml_le_id, ml_u_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -19,8 +20,10 @@
     where ml_id = #{mlId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.dlx.ababy.entity.Mylessons">
-    insert into mylessons (ml_id, ml_le_id)
-    values (#{mlId,jdbcType=INTEGER}, #{mlLeId,jdbcType=INTEGER})
+    insert into mylessons (ml_id, ml_le_id, ml_u_id
+      )
+    values (#{mlId,jdbcType=INTEGER}, #{mlLeId,jdbcType=INTEGER}, #{mlUId,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Mylessons">
     insert into mylessons
@@ -31,6 +34,9 @@
       <if test="mlLeId != null">
         ml_le_id,
       </if>
+      <if test="mlUId != null">
+        ml_u_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="mlId != null">
@@ -38,6 +44,9 @@
       </if>
       <if test="mlLeId != null">
         #{mlLeId,jdbcType=INTEGER},
+      </if>
+      <if test="mlUId != null">
+        #{mlUId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -47,12 +56,16 @@
       <if test="mlLeId != null">
         ml_le_id = #{mlLeId,jdbcType=INTEGER},
       </if>
+      <if test="mlUId != null">
+        ml_u_id = #{mlUId,jdbcType=INTEGER},
+      </if>
     </set>
     where ml_id = #{mlId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.Mylessons">
     update mylessons
-    set ml_le_id = #{mlLeId,jdbcType=INTEGER}
+    set ml_le_id = #{mlLeId,jdbcType=INTEGER},
+      ml_u_id = #{mlUId,jdbcType=INTEGER}
     where ml_id = #{mlId,jdbcType=INTEGER}
   </update>
 </mapper>

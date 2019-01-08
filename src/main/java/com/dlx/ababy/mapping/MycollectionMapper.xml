@@ -4,9 +4,10 @@
   <resultMap id="BaseResultMap" type="com.dlx.ababy.entity.Mycollection">
     <id column="mc_id" jdbcType="INTEGER" property="mcId" />
     <result column="mc_le_id" jdbcType="INTEGER" property="mcLeId" />
+    <result column="mc_u_id" jdbcType="INTEGER" property="mcUId" />
   </resultMap>
   <sql id="Base_Column_List">
-    mc_id, mc_le_id
+    mc_id, mc_le_id, mc_u_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -19,8 +20,10 @@
     where mc_id = #{mcId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.dlx.ababy.entity.Mycollection">
-    insert into mycollection (mc_id, mc_le_id)
-    values (#{mcId,jdbcType=INTEGER}, #{mcLeId,jdbcType=INTEGER})
+    insert into mycollection (mc_id, mc_le_id, mc_u_id
+      )
+    values (#{mcId,jdbcType=INTEGER}, #{mcLeId,jdbcType=INTEGER}, #{mcUId,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Mycollection">
     insert into mycollection
@@ -31,6 +34,9 @@
       <if test="mcLeId != null">
         mc_le_id,
       </if>
+      <if test="mcUId != null">
+        mc_u_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="mcId != null">
@@ -38,6 +44,9 @@
       </if>
       <if test="mcLeId != null">
         #{mcLeId,jdbcType=INTEGER},
+      </if>
+      <if test="mcUId != null">
+        #{mcUId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -47,12 +56,16 @@
       <if test="mcLeId != null">
         mc_le_id = #{mcLeId,jdbcType=INTEGER},
       </if>
+      <if test="mcUId != null">
+        mc_u_id = #{mcUId,jdbcType=INTEGER},
+      </if>
     </set>
     where mc_id = #{mcId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.Mycollection">
     update mycollection
-    set mc_le_id = #{mcLeId,jdbcType=INTEGER}
+    set mc_le_id = #{mcLeId,jdbcType=INTEGER},
+      mc_u_id = #{mcUId,jdbcType=INTEGER}
     where mc_id = #{mcId,jdbcType=INTEGER}
   </update>
 </mapper>

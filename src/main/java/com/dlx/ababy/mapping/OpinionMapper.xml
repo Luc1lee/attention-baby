@@ -4,9 +4,11 @@
   <resultMap id="BaseResultMap" type="com.dlx.ababy.entity.Opinion">
     <id column="op_id" jdbcType="INTEGER" property="opId" />
     <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="op_info" jdbcType="VARCHAR" property="opInfo" />
+    <result column="op_tel" jdbcType="VARCHAR" property="opTel" />
   </resultMap>
   <sql id="Base_Column_List">
-    op_id, u_id
+    op_id, u_id, op_info, op_tel
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -19,8 +21,10 @@
     where op_id = #{opId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.dlx.ababy.entity.Opinion">
-    insert into opinion (op_id, u_id)
-    values (#{opId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER})
+    insert into opinion (op_id, u_id, op_info, 
+      op_tel)
+    values (#{opId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{opInfo,jdbcType=VARCHAR}, 
+      #{opTel,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Opinion">
     insert into opinion
@@ -31,6 +35,12 @@
       <if test="uId != null">
         u_id,
       </if>
+      <if test="opInfo != null">
+        op_info,
+      </if>
+      <if test="opTel != null">
+        op_tel,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="opId != null">
@@ -38,6 +48,12 @@
       </if>
       <if test="uId != null">
         #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="opInfo != null">
+        #{opInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="opTel != null">
+        #{opTel,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -47,12 +63,20 @@
       <if test="uId != null">
         u_id = #{uId,jdbcType=INTEGER},
       </if>
+      <if test="opInfo != null">
+        op_info = #{opInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="opTel != null">
+        op_tel = #{opTel,jdbcType=VARCHAR},
+      </if>
     </set>
     where op_id = #{opId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.Opinion">
     update opinion
-    set u_id = #{uId,jdbcType=INTEGER}
+    set u_id = #{uId,jdbcType=INTEGER},
+      op_info = #{opInfo,jdbcType=VARCHAR},
+      op_tel = #{opTel,jdbcType=VARCHAR}
     where op_id = #{opId,jdbcType=INTEGER}
   </update>
 </mapper>

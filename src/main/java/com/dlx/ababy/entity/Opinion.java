@@ -5,6 +5,10 @@ public class Opinion {
 
     private Integer uId;
 
+    private String opInfo;
+
+    private String opTel;
+
     public Integer getOpId() {
         return opId;
     }
@@ -19,5 +23,21 @@ public class Opinion {
 
     public void setuId(Integer uId) {
         this.uId = uId;
+    }
+
+    public String getOpInfo() {
+        return opInfo;
+    }
+
+    public void setOpInfo(String opInfo) {
+        this.opInfo = opInfo == null ? null : opInfo.trim();
+    }
+
+    public String getOpTel() {
+        return opTel;
+    }
+
+    public void setOpTel(String opTel) {
+        this.opTel = opTel == null ? null : opTel.trim();
     }
 }

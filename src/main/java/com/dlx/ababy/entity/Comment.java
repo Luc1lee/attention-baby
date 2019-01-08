@@ -15,6 +15,8 @@ public class Comment {
 
     private Integer cmtLikenum;
 
+    private Integer cmtComId;
+
     public Integer getCmtId() {
         return cmtId;
     }
@@ -61,5 +63,13 @@ public class Comment {
 
     public void setCmtLikenum(Integer cmtLikenum) {
         this.cmtLikenum = cmtLikenum;
+    }
+
+    public Integer getCmtComId() {
+        return cmtComId;
+    }
+
+    public void setCmtComId(Integer cmtComId) {
+        this.cmtComId = cmtComId;
     }
 }

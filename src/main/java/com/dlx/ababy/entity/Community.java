@@ -13,6 +13,8 @@ public class Community {
 
     private Integer comLikenum;
 
+    private Integer comComtyId;
+
     public Integer getComId() {
         return comId;
     }
@@ -51,5 +53,13 @@ public class Community {
 
     public void setComLikenum(Integer comLikenum) {
         this.comLikenum = comLikenum;
+    }
+
+    public Integer getComComtyId() {
+        return comComtyId;
+    }
+
+    public void setComComtyId(Integer comComtyId) {
+        this.comComtyId = comComtyId;
     }
 }

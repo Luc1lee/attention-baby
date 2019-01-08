@@ -5,6 +5,8 @@ public class Mylessons {
 
     private Integer mlLeId;
 
+    private Integer mlUId;
+
     public Integer getMlId() {
         return mlId;
     }
@@ -19,5 +21,13 @@ public class Mylessons {
 
     public void setMlLeId(Integer mlLeId) {
         this.mlLeId = mlLeId;
+    }
+
+    public Integer getMlUId() {
+        return mlUId;
+    }
+
+    public void setMlUId(Integer mlUId) {
+        this.mlUId = mlUId;
     }
 }

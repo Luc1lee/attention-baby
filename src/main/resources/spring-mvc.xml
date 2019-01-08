@@ -17,7 +17,7 @@
         http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
 	<!-- 本例中用来扫描controller注解 -->
-	<context:component-scan base-package="com.dlx.ababy.controller">
+	<context:component-scan base-package="com.dlx.ababy.controller,com.dlx.ababy.config">
 <!-- 		<context:include-filter type="annotation" expression="org.springframework.stereotype.controller"/>  -->
 	</context:component-scan>
 
@@ -44,12 +44,12 @@
      
      <!-- 设置自定义的转换器 -->
      <bean id="convertorService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
-     	
+
      	<property name="converters">
      	<!-- 注入的是列表 -->
      		<list>
      			<bean class="com.dlx.ababy.convert.CustomerDateConvert"></bean>
-     			
+
      		</list>
      	</property>
      </bean>

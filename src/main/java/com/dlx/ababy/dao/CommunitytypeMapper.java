@@ -2,6 +2,8 @@ package com.dlx.ababy.dao;
 
 import com.dlx.ababy.entity.Communitytype;
 
+import java.util.List;
+
 public interface CommunitytypeMapper {
     int deleteByPrimaryKey(Integer comtyId);
 
@@ -14,4 +16,8 @@ public interface CommunitytypeMapper {
     int updateByPrimaryKeySelective(Communitytype record);
 
     int updateByPrimaryKey(Communitytype record);
+
+    List<Communitytype> selectAllType();
+
+
 }

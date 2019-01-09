@@ -79,4 +79,21 @@
       lk_u_id = #{lkUId,jdbcType=INTEGER}
     where lk_id = #{lkId,jdbcType=INTEGER}
   </update>
+  <delete id="deleteLike" parameterType="com.dlx.ababy.entity.Liker">
+    delete from like
+    <where>
+
+        <if test="lkUId != null">
+          lk_u_id = #{lkUId,jdbcType=INTEGER},
+        </if>
+        <if test="lkComId != null">
+          lk_com_id = #{lkComId,jdbcType=INTEGER},
+        </if>
+        <if test="lkCmtId != null">
+          lk_cmt_id = #{lkCmtId,jdbcType=INTEGER},
+        </if>
+
+    </where>
+  </delete>
+
 </mapper>

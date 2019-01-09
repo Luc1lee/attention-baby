@@ -23,11 +23,11 @@
     where com_id = #{comId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.dlx.ababy.entity.Community">
-    insert into community (com_id, u_id, com_date, 
-      com_info, com_likenum, com_comty_id
+    insert into community (u_id, com_date,
+      com_info,com_comty_id
       )
-    values (#{comId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{comDate,jdbcType=TIMESTAMP}, 
-      #{comInfo,jdbcType=VARCHAR}, #{comLikenum,jdbcType=INTEGER}, #{comComtyId,jdbcType=INTEGER}
+    values (#{uId,jdbcType=INTEGER}, #{comDate,jdbcType=TIMESTAMP},
+      #{comInfo,jdbcType=VARCHAR},#{comComtyId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Community">
@@ -103,4 +103,20 @@
       com_comty_id = #{comComtyId,jdbcType=INTEGER}
     where com_id = #{comId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByComtId" parameterType="int" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" /> FROM community c WHERE c.com_comty_id=#{ID}
+  </select>
+
+  <select id="selectByLikeNum"  resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" /> FROM community c WHERE c.com_likenum >= 50
+  </select>
+
+  <select id="findCollectionByMcUId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from community c
+    inner join mycollection m
+    on c.com_id=m.mc_com_id
+    where m.mc_u_id = #{mcUId,jdbcType=INTEGER}
+  </select>
+
 </mapper>

@@ -17,6 +17,8 @@ public class Comment {
 
     private Integer cmtComId;
 
+    private Integer cmtLevel;
+
     public Integer getCmtId() {
         return cmtId;
     }
@@ -71,5 +73,13 @@ public class Comment {
 
     public void setCmtComId(Integer cmtComId) {
         this.cmtComId = cmtComId;
+    }
+
+    public Integer getCmtLevel() {
+        return cmtLevel;
+    }
+
+    public void setCmtLevel(Integer cmtLevel) {
+        this.cmtLevel = cmtLevel;
     }
 }

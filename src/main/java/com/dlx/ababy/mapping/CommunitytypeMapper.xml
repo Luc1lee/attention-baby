@@ -9,7 +9,7 @@
     comty_id, comty_type
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from communitytype
     where comty_id = #{comtyId,jdbcType=INTEGER}
@@ -55,4 +55,10 @@
     set comty_type = #{comtyType,jdbcType=INTEGER}
     where comty_id = #{comtyId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAllType" resultMap="BaseResultMap">
+    select * from communitytype
+  </select>
+
+
 </mapper>

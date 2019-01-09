@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResultVo addUser(User user) {
-        User user1 = um.selectByName(user.getName());
+        User user1 = um.selectByTel(user.getTel());
         if (user1 != null && !user1.equals("")){
             um.insert(user);
             return  ResultVo.setOK(null);
@@ -31,9 +31,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResultVo login(String name, String password) {
-        if (name !=null && !name.equals("") && password != null && !password.equals("") ){
-            User user = um.selectByName(name);
+    public ResultVo login(String tel, String password) {
+        if (tel !=null && !tel.equals("") && password != null && !password.equals("") ){
+            User user = um.selectByTel(tel);
             if (user.getPassword().equals(password)) {
                 return ResultVo.setOK(null);
             } else {

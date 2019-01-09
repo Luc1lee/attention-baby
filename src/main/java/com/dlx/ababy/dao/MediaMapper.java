@@ -18,4 +18,7 @@ public interface MediaMapper {
     int updateByPrimaryKey(Media record);
 
     List<Media> selectBymdType(Integer mdType, Integer mdMmId);
+
+    List<Media> findCollectionByMcUId(Integer mcUId);
+
 }

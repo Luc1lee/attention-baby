@@ -6,66 +6,45 @@
     <result column="at_u_fid" jdbcType="INTEGER" property="atUFid" />
     <result column="at_u_bid" jdbcType="INTEGER" property="atUBid" />
   </resultMap>
+  <resultMap id="BaseResultMap2" type="com.dlx.ababy.vo.AttentionVo">
+    <id column="at_id" jdbcType="INTEGER" property="atId" />
+    <result column="name" jdbcType="VARCHAR" property="attName" />
+    <result column="name2" jdbcType="VARCHAR" property="attBeName" />
+  </resultMap>
   <sql id="Base_Column_List">
     at_id, at_u_fid, at_u_bid
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from attention
-    where at_id = #{atId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+
+  <delete id="deleteByUid" parameterType="java.lang.Integer">
     delete from attention
-    where at_id = #{atId,jdbcType=INTEGER}
+    where at_u_fid = #{atUFid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.dlx.ababy.entity.Attention">
-    insert into attention (at_id, at_u_fid, at_u_bid
+    insert into attention (at_u_fid, at_u_bid
       )
-    values (#{atId,jdbcType=INTEGER}, #{atUFid,jdbcType=INTEGER}, #{atUBid,jdbcType=INTEGER}
+    values (#{atUFid,jdbcType=INTEGER}, #{atUBid,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Attention">
-    insert into attention
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="atId != null">
-        at_id,
-      </if>
-      <if test="atUFid != null">
-        at_u_fid,
-      </if>
-      <if test="atUBid != null">
-        at_u_bid,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="atId != null">
-        #{atId,jdbcType=INTEGER},
-      </if>
-      <if test="atUFid != null">
-        #{atUFid,jdbcType=INTEGER},
-      </if>
-      <if test="atUBid != null">
-        #{atUBid,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.dlx.ababy.entity.Attention">
-    update attention
-    <set>
-      <if test="atUFid != null">
-        at_u_fid = #{atUFid,jdbcType=INTEGER},
-      </if>
-      <if test="atUBid != null">
-        at_u_bid = #{atUBid,jdbcType=INTEGER},
-      </if>
-    </set>
-    where at_id = #{atId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.dlx.ababy.entity.Attention">
-    update attention
-    set at_u_fid = #{atUFid,jdbcType=INTEGER},
-      at_u_bid = #{atUBid,jdbcType=INTEGER}
-    where at_id = #{atId,jdbcType=INTEGER}
-  </update>
+  <select id="selectAllAttn" resultMap="BaseResultMap2">
+    SELECT a.at_id,u.`name`,us.`name` name2 FROM attention a
+                                                   INNER JOIN `user` u
+                                                              ON a.at_u_bid=u.id
+                                                   INNER JOIN `user` us
+                                                              ON a.at_u_fid=us.id
+    ORDER BY a.at_id
+  </select>
+  <select id="selectcount" resultType="int">
+    select count(*) from attention
+  </select>
+  <select id="selectByPage" resultMap="BaseResultMap2">
+    SELECT a.at_id,u.`name`,us.`name` name2 FROM attention a
+                                                   INNER JOIN `user` u
+                                                              ON a.at_u_bid=u.id
+                                                   INNER JOIN `user` us
+                                                              ON a.at_u_fid=us.id
+    ORDER BY a.at_id LIMIT #{index},#{limit}
+  </select>
+  <select id="selectByUid" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from attention order by at_id limit #{index},#{limit}
+  </select>
 </mapper>

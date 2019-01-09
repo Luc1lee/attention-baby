@@ -2,16 +2,19 @@ package com.dlx.ababy.dao;
 
 import com.dlx.ababy.entity.Attention;
 
+import java.util.List;
+import java.util.Map;
+
 public interface AttentionMapper {
-    int deleteByPrimaryKey(Integer atId);
+    int deleteByUid(Integer Uid);
 
     int insert(Attention record);
 
-    int insertSelective(Attention record);
+    List<Attention> selectAllAttn();
 
-    Attention selectByPrimaryKey(Integer atId);
+    int selectcount();
 
-    int updateByPrimaryKeySelective(Attention record);
+    List<Attention> selectByPage(Map<String,Object> param);
 
-    int updateByPrimaryKey(Attention record);
+    List<Attention> selectByUid(Integer id,Map<String,Object> param);
 }

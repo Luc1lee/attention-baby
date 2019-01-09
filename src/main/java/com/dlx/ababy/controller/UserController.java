@@ -28,8 +28,8 @@ public class UserController {
     @ApiOperation(notes = "传user基本信息，用户名，密码",tags = {"用户名","密码"},value = "登录接口")
     @PostMapping("/login.do")
     @CrossOrigin
-    public ResultVo login(@ApiParam(value = "用户名")String name, @ApiParam(value = "密码")String password) {
-        return us.login(name,password);
+    public ResultVo login(@ApiParam(value = "用户名")String tel, @ApiParam(value = "密码")String password) {
+        return us.login(tel,password);
     }
 
     @ApiOperation(notes = "传user信息，要修改的信息，用户id，SVIP除外",tags = {"对象"},value = "用户信息上传接口")

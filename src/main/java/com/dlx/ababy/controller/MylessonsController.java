@@ -18,9 +18,9 @@ public class MylessonsController {
     @Autowired
     private MylessonsService mylessonsService;
 
-    @ApiOperation(notes = "传输MyLessons页面所需信息,通过url传给后端一个用户id",tags = "信息属性",value = "获取页面信息接口")
+    @ApiOperation(notes = "传输MyLessons页面所需信息,通过url传给后端一个用户id",value = "获取页面信息接口")
     @GetMapping("/findmylessons.do")
-    public ResultVo findMyLessons(@ApiParam(value = "信息") Integer id){
+    public ResultVo findMyLessons(Integer id){
            return mylessonsService.findMyLessons(id);
     }
 

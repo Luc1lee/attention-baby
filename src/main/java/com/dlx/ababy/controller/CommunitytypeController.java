@@ -17,13 +17,13 @@ public class CommunitytypeController {
     private CommunitytypeService comService;
     private ResultVo rv;
 
-    @ApiOperation(notes = "社区类型",tags = {"获取所有社区类型名称接口"},value = "响应指定数量的数据(类型1-6代表热门，旅行，生活，晒娃吃货，育儿")
+    @ApiOperation(notes = "社区类型",value = "响应指定数量的数据(类型1-6代表热门，旅行，生活，晒娃吃货，育儿")
     @GetMapping("/queryAllType.do")
     public ResultVo All() {
         return comService.queryAllType();
     }
 
-    @ApiOperation(notes = "社区类型",tags = {"新增社区类型名称接口"},value = "用数字1-6代替名称")
+    @ApiOperation(notes = "社区类型",value = "用数字1-6代替名称")
     @PostMapping("/saveType.do")
     public ResultVo save(Communitytype co) {
         return comService.saveType(co);

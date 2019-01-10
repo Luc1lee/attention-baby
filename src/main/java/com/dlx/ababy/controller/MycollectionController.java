@@ -22,24 +22,24 @@ public class MycollectionController {
     @Autowired
     private MycollectionService ms;
 
-    @ApiOperation(notes = "传收藏信息，进行添加，必须上传客户id（mcUId），不必要：食物id（mcFdId）、社区消息id（mcComId）、音乐id（mcMdId）三者选一",tags = {"mycollection对象"},value = "添加收藏接口")
+    @ApiOperation(notes = "传收藏信息，进行添加，必须上传客户id（mcUId），不必要：食物id（mcFdId）、社区消息id（mcComId）、音乐id（mcMdId）三者选一",value = "添加收藏接口")
     @PostMapping("/add.do")
     @CrossOrigin
-    public ResultVo add(@ApiParam(value = "mycollection对象")Mycollection mycollection) {
+    public ResultVo add(Mycollection mycollection) {
         return ms.add(mycollection);
     }
 
-    @ApiOperation(notes = "传这条收藏的id（mcId）",tags = {"mcId"},value = "取消收藏接口")
+    @ApiOperation(notes = "传这条收藏的id（mcId）",value = "取消收藏接口")
     @PostMapping("/del.do")
     @CrossOrigin
-    public ResultVo delete(@ApiParam(value = "mcId")int mcId) {
+    public ResultVo delete(int mcId) {
         return ms.delete(mcId);
     }
 
-    @ApiOperation(notes = "传类型和客户id进行收藏查询类型（type 0.社区，1.食物，2.音乐）客户id（mcUID）",tags = {"类型","客户id"},value = "取消收藏接口")
+    @ApiOperation(notes = "传类型和客户id进行收藏查询类型（type 0.社区，1.食物，2.音乐）客户id（mcUID）",value = "取消收藏接口")
     @PostMapping("/query.do")
     @CrossOrigin
-    public ResultVo query(@ApiParam(value = "类型")Integer type,@ApiParam(value = "客户id")Integer mcUId) {
+    public ResultVo query(Integer type,Integer mcUId) {
         return ms.selectByType(type,mcUId);
     }
 }

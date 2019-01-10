@@ -7,7 +7,6 @@ import com.qfedu.vo.ResultVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.interfaces.RSAKey;
 import java.util.List;
 
 @Service
@@ -16,7 +15,7 @@ public class CommunityServiceImpl implements CommunityService {
     private CommunityMapper commDao;
     @Override
     public ResultVo save(Community co) {
-        if (commDao.insert(co) > 0) {
+        if (commDao.insert(co) >0) {
             return ResultVo.setOK(null);
         } else {
             return ResultVo.setERROR();
@@ -42,5 +41,15 @@ public class CommunityServiceImpl implements CommunityService {
         } else {
             return ResultVo.setERROR();
         }
+    }
+
+    @Override
+    public Community selectById(int id) {
+        return commDao.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public Community selectByInfo(String info) {
+        return commDao.selectByInfo(info);
     }
 }

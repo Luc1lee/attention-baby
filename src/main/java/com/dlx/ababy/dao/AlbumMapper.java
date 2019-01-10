@@ -14,4 +14,6 @@ public interface AlbumMapper {
     int updateByPrimaryKeySelective(Album record);
 
     int updateByPrimaryKey(Album record);
+
+    Album selectByUid(Integer uId);
 }

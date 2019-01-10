@@ -138,6 +138,12 @@
       md_mm_id = #{mdMmId,jdbcType=INTEGER}
     where md_id = #{mdId,jdbcType=INTEGER}
   </update>
+  <select id="selectBymdType" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from media
+    where md_type = #{mdType,jdbcType=INTEGER} AND md_mm_id = #{mdMmId,jdbcType=INTEGER}
+  </select>
   <select id="findCollectionByMcUId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select <include refid="Base_Column_List" /> from media md
     inner join mycollection m

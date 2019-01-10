@@ -9,6 +9,16 @@
     <result column="com_likenum" jdbcType="INTEGER" property="comLikenum" />
     <result column="com_comty_id" jdbcType="INTEGER" property="comComtyId" />
   </resultMap>
+  <resultMap id="BaseResultMap2" type="com.dlx.ababy.vo.CommunityVVo">
+    <id column="com_id" jdbcType="INTEGER" property="comId" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="com_date" jdbcType="TIMESTAMP" property="comDate" />
+    <result column="com_info" jdbcType="VARCHAR" property="comInfo" />
+    <result column="com_likenum" jdbcType="INTEGER" property="comLikenum" />
+    <result column="com_comty_id" jdbcType="INTEGER" property="comComtyId" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+  </resultMap>
+
   <sql id="Base_Column_List">
     com_id, u_id, com_date, com_info, com_likenum, com_comty_id
   </sql>
@@ -111,6 +121,10 @@
   <select id="selectByLikeNum"  resultMap="BaseResultMap">
     SELECT <include refid="Base_Column_List" /> FROM community c WHERE c.com_likenum >= 50
   </select>
+<select id="selectByInfo" parameterType="string" resultMap="BaseResultMap">
+  select c.com_id from community c where c.com_info=#{comInfo}
+</select>
+
 
   <select id="findCollectionByMcUId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select <include refid="Base_Column_List" /> from community c

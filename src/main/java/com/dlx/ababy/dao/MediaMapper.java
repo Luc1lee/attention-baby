@@ -1,6 +1,5 @@
 package com.dlx.ababy.dao;
 
-
 import com.dlx.ababy.entity.Media;
 
 import java.util.List;
@@ -17,6 +16,8 @@ public interface MediaMapper {
     int updateByPrimaryKeySelective(Media record);
 
     int updateByPrimaryKey(Media record);
+
+    List<Media> selectBymdType(Integer mdType, Integer mdMmId);
 
     List<Media> findCollectionByMcUId(Integer mcUId);
 

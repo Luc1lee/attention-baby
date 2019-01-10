@@ -73,7 +73,7 @@
 		<url-pattern>/v2/api-docs</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
-		<welcome-file>login.html</welcome-file>
+		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 
 </web-app>

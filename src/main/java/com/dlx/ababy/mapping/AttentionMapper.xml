@@ -44,7 +44,13 @@
                                                               ON a.at_u_fid=us.id
     ORDER BY a.at_id LIMIT #{index},#{limit}
   </select>
-  <select id="selectByUid" resultMap="BaseResultMap">
-    select <include refid="Base_Column_List" /> from attention order by at_id limit #{index},#{limit}
+  <select id="selectByUid" parameterType="int" resultMap="BaseResultMap">
+    SELECT a.at_id,u.`name`,co.com_id,co.com_date,co.com_info,co.com_likenum FROM attention a
+    INNER JOIN `user` u
+    ON a.at_u_bid=u.id
+    INNER JOIN community co
+    ON a.at_u_bid=co.u_id
+    WHERE a.at_u_fid=#{Id}
+    ORDER BY a.at_id LIMIT #{index},#{limit}
   </select>
 </mapper>

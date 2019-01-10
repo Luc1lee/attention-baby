@@ -9,9 +9,10 @@
     <result column="img_md_id" jdbcType="INTEGER" property="imgMdId" />
     <result column="img_fd_id" jdbcType="INTEGER" property="imgFdId" />
     <result column="img_op_id" jdbcType="INTEGER" property="imgOpId" />
+    <result column="img_pt_id" jdbcType="INTEGER" property="imgPtId" />
   </resultMap>
   <sql id="Base_Column_List">
-    img_id, img_url, img_com_id, img_cmt_id, img_md_id, img_fd_id, img_op_id
+    img_id, img_url, img_com_id, img_cmt_id, img_md_id, img_fd_id, img_op_id,img_pt_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -26,10 +27,10 @@
   <insert id="insert" parameterType="com.dlx.ababy.entity.Img">
     insert into img (img_id, img_url, img_com_id, 
       img_cmt_id, img_md_id, img_fd_id, 
-      img_op_id)
+      img_op_id,img_pt_id)
     values (#{imgId,jdbcType=INTEGER}, #{imgUrl,jdbcType=VARCHAR}, #{imgComId,jdbcType=INTEGER}, 
       #{imgCmtId,jdbcType=INTEGER}, #{imgMdId,jdbcType=INTEGER}, #{imgFdId,jdbcType=INTEGER}, 
-      #{imgOpId,jdbcType=INTEGER})
+      #{imgOpId,jdbcType=INTEGER},#{imgPtId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Img">
     insert into img
@@ -111,7 +112,8 @@
       img_cmt_id = #{imgCmtId,jdbcType=INTEGER},
       img_md_id = #{imgMdId,jdbcType=INTEGER},
       img_fd_id = #{imgFdId,jdbcType=INTEGER},
-      img_op_id = #{imgOpId,jdbcType=INTEGER}
+      img_op_id = #{imgOpId,jdbcType=INTEGER},
+        img_pt_id = #{imgPtId,jdbcType=INTEGER}
     where img_id = #{imgId,jdbcType=INTEGER}
   </update>
 </mapper>

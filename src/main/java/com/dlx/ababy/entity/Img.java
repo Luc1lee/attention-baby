@@ -15,6 +15,16 @@ public class Img {
 
     private Integer imgOpId;
 
+    private Integer imgPtId;
+
+    public Integer getImgPtId() {
+        return imgPtId;
+    }
+
+    public void setImgPtId(Integer imgPtId) {
+        this.imgPtId = imgPtId;
+    }
+
     public Integer getImgId() {
         return imgId;
     }

@@ -121,7 +121,12 @@
             <artifactId>springfox-swagger2</artifactId>
             <version>2.9.2</version>
         </dependency>
-
+        <!--文件上传依赖jar-->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.3</version>
+        </dependency>
 
 
     </dependencies>
@@ -130,6 +135,22 @@
 
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <!-- maven中的tomcat插件 -->
             <plugin>
@@ -140,7 +161,7 @@
                     <uriEncoding>UTF-8</uriEncoding>
                     <!-- 配置web应用的路径 -->
                     <port>8081</port>
-                    <path>/baby</path>
+                    <path>/</path>
                 </configuration>
             </plugin>
             <!-- 指定编译版本 -->

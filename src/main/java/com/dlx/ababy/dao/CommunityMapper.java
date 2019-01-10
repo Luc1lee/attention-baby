@@ -20,4 +20,6 @@ public interface CommunityMapper {
     List<Community> selectByComtId(Integer id);
 
     List<Community> selectByLikeNum();
+
+    Community selectByInfo(String info);
 }

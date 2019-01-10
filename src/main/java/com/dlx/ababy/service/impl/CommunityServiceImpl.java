@@ -3,6 +3,7 @@ package com.dlx.ababy.service.impl;
 import com.dlx.ababy.dao.CommunityMapper;
 import com.dlx.ababy.entity.Community;
 import com.dlx.ababy.service.CommunityService;
+import com.dlx.ababy.vo.CommunityVo;
 import com.qfedu.vo.ResultVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class CommunityServiceImpl implements CommunityService {
     private CommunityMapper commDao;
     @Override
     public ResultVo save(Community co) {
-        if (commDao.insert(co) > 0) {
+        if (commDao.insert(co) >0) {
             return ResultVo.setOK(null);
         } else {
             return ResultVo.setERROR();
@@ -42,5 +43,15 @@ public class CommunityServiceImpl implements CommunityService {
         } else {
             return ResultVo.setERROR();
         }
+    }
+
+    @Override
+    public Community selectById(int id) {
+        return commDao.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public Community selectByInfo(String info) {
+        return commDao.selectByInfo(info);
     }
 }

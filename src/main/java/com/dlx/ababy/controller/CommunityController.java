@@ -42,21 +42,21 @@ public class CommunityController {
         return ResultVo.setOK(null);
     }
 
-    @ApiOperation(notes = "查找",tags = {"分页查找社区动态接口"},value = "根据五种基本社区动态类型查找，需要页码和条数，需要参数id")
+    @ApiOperation(notes = "查找",value = "根据五种基本社区动态类型查找，需要页码和条数，需要参数id")
     @GetMapping("/communitySecletByComtId.do")
     public PageBeanVo SelectByComtId(Integer id,int page, int limit) {
 
         return commService.queryCommByComtId(id,page,limit);
     }
 
-    @ApiOperation(notes = "查找",tags = {"分页查找热门社区动态接口"},value = "查找热门社区动态,点赞数大于50即热门，需要页码和条数")
+    @ApiOperation(notes = "查找",value = "查找热门社区动态,点赞数大于50即热门，需要页码和条数")
     @GetMapping("/communitySelectByLikeNum.do")
     public PageBeanVo SelectByLikeNum(int page, int limit) {
 
         return commService.queryCommByLikeNum(page,limit);
     }
 
-    @ApiOperation(notes = "删除",tags = {"删除社区动态接口"},value = "删除社区动态")
+    @ApiOperation(notes = "删除",value = "删除社区动态")
     @GetMapping("/communityDel.do")
     public ResultVo Deletecomm(int id) {
 

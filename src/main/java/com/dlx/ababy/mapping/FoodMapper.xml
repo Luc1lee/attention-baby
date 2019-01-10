@@ -90,4 +90,10 @@
       fd_cook = #{fdCook,jdbcType=VARCHAR}
     where fd_id = #{fdId,jdbcType=INTEGER}
   </update>
+  <select id="findCollectionByMcUId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+   select <include refid="Base_Column_List" /> from food f
+    inner join mycollection m
+    on f.fd_id=m.mc_fd_id
+    where m.mc_u_id = #{mcUId,jdbcType=INTEGER}
+  </select>
 </mapper>

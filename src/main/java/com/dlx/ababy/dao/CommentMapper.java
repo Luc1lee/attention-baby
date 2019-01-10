@@ -1,6 +1,9 @@
 package com.dlx.ababy.dao;
 
 import com.dlx.ababy.entity.Comment;
+import com.dlx.ababy.vo.CommentVo;
+
+import java.util.List;
 
 public interface CommentMapper {
     int deleteByPrimaryKey(Integer cmtId);
@@ -14,4 +17,6 @@ public interface CommentMapper {
     int updateByPrimaryKeySelective(Comment record);
 
     int updateByPrimaryKey(Comment record);
+
+    List<CommentVo> findByComId(Integer cmtComId);
 }

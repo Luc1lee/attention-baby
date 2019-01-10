@@ -22,4 +22,6 @@ public interface CommunityMapper {
     List<Community> selectByLikeNum();
 
     Community selectByInfo(String info);
+
+    List<Community> findCollectionByMcUId(Integer mcUId);
 }

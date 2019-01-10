@@ -5,13 +5,31 @@
     <id column="cmt_id" jdbcType="INTEGER" property="cmtId" />
     <result column="cmt_info" jdbcType="VARCHAR" property="cmtInfo" />
     <result column="cmt_u_id" jdbcType="INTEGER" property="cmtUId" />
-    <result column="cmt_date" jdbcType="TIMESTAMP" property="cmtDate" />
+    <result column="cmt_date" jdbcType="DATE" property="cmtDate" />
     <result column="cmt_parent_id" jdbcType="INTEGER" property="cmtParentId" />
     <result column="cmt_likenum" jdbcType="INTEGER" property="cmtLikenum" />
     <result column="cmt_com_id" jdbcType="INTEGER" property="cmtComId" />
+    <result column="cmt_level" jdbcType="INTEGER" property="cmtLevel" />
+  </resultMap>
+  <resultMap id="ListResultMap" type="com.dlx.ababy.vo.CommentVo">
+    <id column="cmt_id" jdbcType="INTEGER" property="cmtId" />
+    <result column="cmt_info" jdbcType="VARCHAR" property="cmtInfo" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="cmt_date" jdbcType="DATE" property="cmtDate" />
+    <result column="cmt_likenum" jdbcType="INTEGER" property="cmtLikenum" />
+    <result column="cmt_com_id" jdbcType="INTEGER" property="cmtComId" />
+    <collection property="list" javaType="java.util.ArrayList"
+                ofType="com.dlx.ababy.vo.ReplyCommentVo">
+      <result column="rid" jdbcType="INTEGER" property="replyCmtId" />
+      <result column="rinfo" jdbcType="VARCHAR" property="replyCmtInfo" />
+      <result column="rname" jdbcType="VARCHAR" property="replyName" />
+      <result column="rdate" jdbcType="DATE" property="replyCmtDate" />
+      <result column="rlikenum" jdbcType="INTEGER" property="replyCmtLikenum" />
+      <result column="cmt_parent_id" jdbcType="INTEGER" property="replyCmtParentId" />
+    </collection>
   </resultMap>
   <sql id="Base_Column_List">
-    cmt_id, cmt_info, cmt_u_id, cmt_date, cmt_parent_id, cmt_likenum, cmt_com_id
+    cmt_id, cmt_info, cmt_u_id, cmt_date, cmt_parent_id, cmt_likenum, cmt_com_id, cmt_level
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -26,10 +44,10 @@
   <insert id="insert" parameterType="com.dlx.ababy.entity.Comment">
     insert into comment (cmt_id, cmt_info, cmt_u_id, 
       cmt_date, cmt_parent_id, cmt_likenum, 
-      cmt_com_id)
+      cmt_com_id, cmt_level)
     values (#{cmtId,jdbcType=INTEGER}, #{cmtInfo,jdbcType=VARCHAR}, #{cmtUId,jdbcType=INTEGER}, 
-      #{cmtDate,jdbcType=TIMESTAMP}, #{cmtParentId,jdbcType=INTEGER}, #{cmtLikenum,jdbcType=INTEGER}, 
-      #{cmtComId,jdbcType=INTEGER})
+      #{cmtDate,jdbcType=DATE}, #{cmtParentId,jdbcType=INTEGER}, #{cmtLikenum,jdbcType=INTEGER}, 
+      #{cmtComId,jdbcType=INTEGER}, #{cmtLevel,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.dlx.ababy.entity.Comment">
     insert into comment
@@ -55,6 +73,9 @@
       <if test="cmtComId != null">
         cmt_com_id,
       </if>
+      <if test="cmtLevel != null">
+        cmt_level,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="cmtId != null">
@@ -67,7 +88,7 @@
         #{cmtUId,jdbcType=INTEGER},
       </if>
       <if test="cmtDate != null">
-        #{cmtDate,jdbcType=TIMESTAMP},
+        #{cmtDate,jdbcType=DATE},
       </if>
       <if test="cmtParentId != null">
         #{cmtParentId,jdbcType=INTEGER},
@@ -77,6 +98,9 @@
       </if>
       <if test="cmtComId != null">
         #{cmtComId,jdbcType=INTEGER},
+      </if>
+      <if test="cmtLevel != null">
+        #{cmtLevel,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -90,7 +114,7 @@
         cmt_u_id = #{cmtUId,jdbcType=INTEGER},
       </if>
       <if test="cmtDate != null">
-        cmt_date = #{cmtDate,jdbcType=TIMESTAMP},
+        cmt_date = #{cmtDate,jdbcType=DATE},
       </if>
       <if test="cmtParentId != null">
         cmt_parent_id = #{cmtParentId,jdbcType=INTEGER},
@@ -101,6 +125,9 @@
       <if test="cmtComId != null">
         cmt_com_id = #{cmtComId,jdbcType=INTEGER},
       </if>
+      <if test="cmtLevel != null">
+        cmt_level = #{cmtLevel,jdbcType=INTEGER},
+      </if>
     </set>
     where cmt_id = #{cmtId,jdbcType=INTEGER}
   </update>
@@ -108,10 +135,19 @@
     update comment
     set cmt_info = #{cmtInfo,jdbcType=VARCHAR},
       cmt_u_id = #{cmtUId,jdbcType=INTEGER},
-      cmt_date = #{cmtDate,jdbcType=TIMESTAMP},
+      cmt_date = #{cmtDate,jdbcType=DATE},
       cmt_parent_id = #{cmtParentId,jdbcType=INTEGER},
       cmt_likenum = #{cmtLikenum,jdbcType=INTEGER},
-      cmt_com_id = #{cmtComId,jdbcType=INTEGER}
+      cmt_com_id = #{cmtComId,jdbcType=INTEGER},
+      cmt_level = #{cmtLevel,jdbcType=INTEGER}
     where cmt_id = #{cmtId,jdbcType=INTEGER}
   </update>
+  <select id="findByComId" parameterType="java.lang.Integer" resultMap="ListResultMap">
+    select c.cmt_id,c.cmt_info,u.`name`,c.cmt_date,c.cmt_com_id,r.cmt_id rid,r.cmt_info rinfo,u.`name` rname,r.cmt_date rdate,r.cmt_likenum rlikenum,r.cmt_parent_id from `comment` c
+INNER JOIN `comment` r
+on r.cmt_parent_id=c.cmt_id and r.cmt_level=1
+INNER JOIN `user` u
+ON c.cmt_u_id=u.id AND r.cmt_u_id=u.id
+    where cmt_com_id = #{cmtComId,jdbcType=INTEGER}
+  </select>
 </mapper>

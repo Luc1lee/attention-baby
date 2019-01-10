@@ -3,9 +3,13 @@ package com.dlx.ababy.entity;
 public class Mycollection {
     private Integer mcId;
 
-    private Integer mcLeId;
+    private Integer mcComId;
 
     private Integer mcUId;
+
+    private Integer mcFdId;
+
+    private Integer mcMdId;
 
     public Integer getMcId() {
         return mcId;
@@ -15,12 +19,12 @@ public class Mycollection {
         this.mcId = mcId;
     }
 
-    public Integer getMcLeId() {
-        return mcLeId;
+    public Integer getMcComId() {
+        return mcComId;
     }
 
-    public void setMcLeId(Integer mcLeId) {
-        this.mcLeId = mcLeId;
+    public void setMcComId(Integer mcComId) {
+        this.mcComId = mcComId;
     }
 
     public Integer getMcUId() {
@@ -29,5 +33,21 @@ public class Mycollection {
 
     public void setMcUId(Integer mcUId) {
         this.mcUId = mcUId;
+    }
+
+    public Integer getMcFdId() {
+        return mcFdId;
+    }
+
+    public void setMcFdId(Integer mcFdId) {
+        this.mcFdId = mcFdId;
+    }
+
+    public Integer getMcMdId() {
+        return mcMdId;
+    }
+
+    public void setMcMdId(Integer mcMdId) {
+        this.mcMdId = mcMdId;
     }
 }

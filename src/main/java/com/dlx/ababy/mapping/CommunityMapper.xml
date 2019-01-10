@@ -126,4 +126,11 @@
 </select>
 
 
+  <select id="findCollectionByMcUId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from community c
+    inner join mycollection m
+    on c.com_id=m.mc_com_id
+    where m.mc_u_id = #{mcUId,jdbcType=INTEGER}
+  </select>
+
 </mapper>

@@ -1,6 +1,7 @@
 package com.dlx.ababy.dao;
 
 import com.dlx.ababy.entity.Mylessons;
+import com.dlx.ababy.vo.MylessonsResultVo;
 
 public interface MylessonsMapper {
     int deleteByPrimaryKey(Integer mlId);
@@ -14,4 +15,6 @@ public interface MylessonsMapper {
     int updateByPrimaryKeySelective(Mylessons record);
 
     int updateByPrimaryKey(Mylessons record);
+
+    MylessonsResultVo selectByUserPrimaryKey(Integer mlId);
 }

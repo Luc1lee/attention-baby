@@ -17,4 +17,5 @@ public interface MycollectionMapper {
 
     int updateByPrimaryKey(Mycollection record);
 
+    Mycollection findByCondition(Mycollection mycollection);
 }

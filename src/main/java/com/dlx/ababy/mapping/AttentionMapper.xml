@@ -11,13 +11,25 @@
     <result column="name" jdbcType="VARCHAR" property="attName" />
     <result column="name2" jdbcType="VARCHAR" property="attBeName" />
   </resultMap>
+  <resultMap id="BaseResultMap3" type="com.dlx.ababy.vo.CommunityShowVo">
+    <id column="id" jdbcType="INTEGER" property="Id" />
+    <result column="name" jdbcType="VARCHAR" property="Name" />
+    <result column="photo" jdbcType="VARCHAR" property="Photo" />
+    <result column="com_id" jdbcType="INTEGER" property="comId" />
+    <result column="com_date" jdbcType="TIMESTAMP" property="comDate" />
+    <result column="com_info" jdbcType="VARCHAR" property="comInfo" />
+    <result column="com_likenum" jdbcType="INTEGER" property="comLikenum" />
+    <result column="com_comty_id" jdbcType="INTEGER" property="comComtyId" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+  </resultMap>
   <sql id="Base_Column_List">
     at_id, at_u_fid, at_u_bid
   </sql>
 
   <delete id="deleteByUid" parameterType="java.lang.Integer">
     delete from attention
-    where at_u_fid = #{atUFid,jdbcType=INTEGER}
+    where at_u_fid = #{Uid,jdbcType=INTEGER}
+    and at_u_bid=#{Bid}
   </delete>
   <insert id="insert" parameterType="com.dlx.ababy.entity.Attention">
     insert into attention (at_u_fid, at_u_bid
@@ -44,12 +56,14 @@
                                                               ON a.at_u_fid=us.id
     ORDER BY a.at_id LIMIT #{index},#{limit}
   </select>
-  <select id="selectByUid" parameterType="int" resultMap="BaseResultMap">
-    SELECT a.at_id,u.`name`,co.com_id,co.com_date,co.com_info,co.com_likenum FROM attention a
+  <select id="selectByUid" parameterType="int" resultMap="BaseResultMap3">
+    SELECT u.id,u.`name`,u.photo,co.com_id,co.com_date,co.com_info,co.com_likenum,co.com_comty_id,i.img_url FROM attention a
     INNER JOIN `user` u
-    ON a.at_u_bid=u.id
+             ON a.at_u_bid=u.id
     INNER JOIN community co
-    ON a.at_u_bid=co.u_id
+             ON a.at_u_bid=co.u_id
+    INNER JOIN img i
+             ON co.com_id=i.img_com_id
     WHERE a.at_u_fid=#{Id}
     ORDER BY a.at_id LIMIT #{index},#{limit}
   </select>

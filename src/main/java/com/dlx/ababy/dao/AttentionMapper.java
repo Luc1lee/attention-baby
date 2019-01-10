@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface AttentionMapper {
-    int deleteByUid(Integer Uid);
+    int deleteByUid(Map<String,Object> param);
 
     int insert(Attention record);
 

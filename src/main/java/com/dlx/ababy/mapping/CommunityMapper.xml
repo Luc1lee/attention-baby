@@ -18,6 +18,17 @@
     <result column="com_comty_id" jdbcType="INTEGER" property="comComtyId" />
     <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
   </resultMap>
+  <resultMap id="BaseResultMap3" type="com.dlx.ababy.vo.CommunityShowVo">
+    <id column="id" jdbcType="INTEGER" property="Id" />
+    <result column="name" jdbcType="VARCHAR" property="Name" />
+    <result column="photo" jdbcType="VARCHAR" property="Photo" />
+    <result column="com_id" jdbcType="INTEGER" property="comId" />
+    <result column="com_date" jdbcType="TIMESTAMP" property="comDate" />
+    <result column="com_info" jdbcType="VARCHAR" property="comInfo" />
+    <result column="com_likenum" jdbcType="INTEGER" property="comLikenum" />
+    <result column="com_comty_id" jdbcType="INTEGER" property="comComtyId" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+  </resultMap>
 
   <sql id="Base_Column_List">
     com_id, u_id, com_date, com_info, com_likenum, com_comty_id
@@ -114,17 +125,33 @@
     where com_id = #{comId,jdbcType=INTEGER}
   </update>
 
-  <select id="selectByComtId" parameterType="int" resultMap="BaseResultMap">
-    SELECT <include refid="Base_Column_List" /> FROM community c WHERE c.com_comty_id=#{ID}
+  <select id="selectByComtId" parameterType="int" resultMap="BaseResultMap3">
+    SELECT u.id,u.`name`,u.photo,co.com_id,co.com_date,co.com_info,co.com_likenum,co.com_comty_id,i.img_url FROM community co
+         INNER JOIN img i
+                    ON co.com_id=i.img_com_id
+         INNER JOIN `user` u
+                    ON u.id=co.u_id
+    WHERE co.com_comty_id=#{Id}
+    ORDER BY co.com_id
+    LIMIT #{index},#{limit}
   </select>
 
-  <select id="selectByLikeNum"  resultMap="BaseResultMap">
-    SELECT <include refid="Base_Column_List" /> FROM community c WHERE c.com_likenum >= 50
+  <select id="selectByLikeNum"  resultMap="BaseResultMap3">
+    SELECT u.id,u.`name`,u.photo,co.com_id,co.com_date,co.com_info,co.com_likenum,co.com_comty_id,i.img_url FROM community co
+    INNER JOIN img i
+    ON co.com_id=i.img_com_id
+    INNER JOIN `user` u
+    ON u.id=co.u_id
+    WHERE co.com_likenum >= 50
+    ORDER BY co.com_id
+    LIMIT #{index},#{limit}
   </select>
-<select id="selectByInfo" parameterType="string" resultMap="BaseResultMap">
+<select id="selectByInfo" parameterType="string" resultMap="BaseResultMap3">
   select c.com_id from community c where c.com_info=#{comInfo}
 </select>
-
+  <select id="selectcount" resultType="int">
+    select count(*) from community
+  </select>
 
   <select id="findCollectionByMcUId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select <include refid="Base_Column_List" /> from community c

@@ -24,7 +24,7 @@ public class CommunityController {
     private CommunityService commService;
     @Autowired
     private ImgService imgService;
-    @ApiOperation(notes = "动态",tags = {"发表社区动态接口"},value = "发表新的社区动态,需要传递上传成功的imgurl")
+    @ApiOperation(notes = "发表社区动态接口",value = "发表新的社区动态,需要传递上传成功的imgurl")
     @PostMapping("/communitySave.do")
     public ResultVo Save(CommunityVo vo) {
         List<String> url = vo.getImgUrl();

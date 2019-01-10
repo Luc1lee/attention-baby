@@ -22,5 +22,5 @@ public class MediaController {
 
     @ApiOperation(notes = "传媒体文件种类(0音乐，1故事,2早教，3家教，4宝健)mdType及歌单mdMmId获取歌单列表音频文件",value = "获取音频")
     @GetMapping("/musiclist.do")
-    public ResultVo albumDetail(@ApiParam(value = "文件种类") Integer mdType, @ApiParam(value = "歌单id")Integer mdMmId) { return mediaService.queryMusicMenu(mdType,mdMmId); }
+    public ResultVo albumDetail(Integer mdType, Integer mdMmId) { return mediaService.queryMusicMenu(mdType,mdMmId); }
 }

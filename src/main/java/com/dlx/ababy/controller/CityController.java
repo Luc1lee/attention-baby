@@ -24,10 +24,10 @@ public class CityController {
     @Autowired
     private AreaService as;
 
-    @ApiOperation(notes = "传城市id，进行查询，城市id（ctId）,如果id为空查询城市列表，如果不为空查询城市下地区列表",tags = {"城市id"},value = "查询宝宝信息接口")
+    @ApiOperation(notes = "传城市id，进行查询，城市id（ctId）,如果id为空查询城市列表，如果不为空查询城市下地区列表",value = "查询宝宝信息接口")
     @GetMapping("/select.do")
     @CrossOrigin
-    public ResultVo select(@ApiParam(value = "城市id")Integer ctId) {
+    public ResultVo select(Integer ctId) {
         if (ctId == null || ctId.equals("")){
             return  cs.selectAll();
         } else {

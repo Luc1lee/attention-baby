@@ -21,24 +21,24 @@ public class BabyController {
     @Autowired
     private BabyService bs;
 
-    @ApiOperation(notes = "传baby基本信息，进行添加，baby对象：必要变量babyName,babySex,babyUId,babyRelation【关系0.爸爸，1.妈妈，2.其他】 可选变量babyBirthday,babyDuedate,babyPhoto",tags = {"对象"},value = "添加baby接口")
+    @ApiOperation(notes = "传baby基本信息，进行添加，baby对象：必要变量babyName,babySex,babyUId,babyRelation【关系0.爸爸，1.妈妈，2.其他】 可选变量babyBirthday,babyDuedate,babyPhoto",value = "添加baby接口")
     @PostMapping("/add.do")
     @CrossOrigin
-    public ResultVo addBaby(@ApiParam(value = "对象")Baby baby){
+    public ResultVo addBaby(Baby baby){
         return bs.addBaby(baby);
     }
 
-    @ApiOperation(notes = "传baby基本信息，进行修改，baby对象：要修改的信息、bId",tags = {"baby对象"},value = "修改baby接口")
+    @ApiOperation(notes = "传baby基本信息，进行修改，baby对象：要修改的信息、bId",value = "修改baby接口")
     @PostMapping("/update.do")
     @CrossOrigin
-    public ResultVo updateBaby(@ApiParam(value = "baby对象")Baby baby){
+    public ResultVo updateBaby(Baby baby){
         return bs.updateBaby(baby);
     }
 
-    @ApiOperation(notes = "传用户id，进行查询，用户id（babyUId）",tags = {"用户id"},value = "查询用户所有baby接口")
+    @ApiOperation(notes = "传用户id，进行查询，用户id（babyUId）",value = "查询用户所有baby接口")
     @PostMapping("/findbyuid.do")
     @CrossOrigin
-    public ResultVo findByBId(@ApiParam(value = "用户id")Integer babyUId){
+    public ResultVo findByBId(Integer babyUId){
         return bs.selectByUId(babyUId);
     }
 }

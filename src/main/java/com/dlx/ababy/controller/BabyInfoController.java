@@ -18,17 +18,17 @@ public class BabyInfoController {
     @Autowired
     private BabyInfoService bis;
 
-    @ApiOperation(notes = "传baby详细信息，进行添加",tags = {"对象"},value = "添加baby详细信息接口")
+    @ApiOperation(notes = "传baby详细信息，进行添加",value = "添加baby详细信息接口")
     @PostMapping("/add.do")
     @CrossOrigin
-    public ResultVo addBabyInfo(@ApiParam(value = "对象")BabyInfo babyInfo){
+    public ResultVo addBabyInfo(BabyInfo babyInfo){
         return bis.addBabyInfo(babyInfo);
     }
 
-    @ApiOperation(notes = "传宝宝id，进行查询，宝宝id（biBId）",tags = {"宝宝id"},value = "查询宝宝信息接口")
+    @ApiOperation(notes = "传宝宝id，进行查询，宝宝id（biBId）",value = "查询宝宝信息接口")
     @GetMapping("/findbybid.do")
     @CrossOrigin
-    public ResultVo findByBId(@ApiParam(value = "宝宝id")Integer biBId){
+    public ResultVo findByBId(Integer biBId){
         return bis.findByBId(biBId);
     }
 

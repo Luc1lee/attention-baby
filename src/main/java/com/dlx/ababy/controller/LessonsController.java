@@ -19,12 +19,12 @@ public class LessonsController {
     private LessonsService lessonsService;
 
     @GetMapping("/detail.do")
-    @ApiOperation(notes = "传输课程详情页面所需信息，传给后台leid",tags = "信息属性",value = "获取课程详细信息接口")
-    public ResultVo queryLessons(@ApiParam(value = "属性") Integer leid) { return lessonsService.queryLessonsDetail(leid); }
+    @ApiOperation(notes = "传输课程详情页面所需信息，传给后台leid",value = "获取课程详细信息接口")
+    public ResultVo queryLessons(Integer leid) { return lessonsService.queryLessonsDetail(leid); }
 
     @GetMapping("/list.do")
-    @ApiOperation(notes = "传输课程列表页面所需信息，传给后台课程类型ltid，1-早教，2-家教，3-宝健",tags = "信息属性",value = "获取课程列表接口")
-    public ResultVo queryLessonsList(@ApiParam(value = "属性") Integer ltid) { return lessonsService.queryLessonsList(ltid); }
+    @ApiOperation(notes = "传输课程列表页面所需信息，传给后台课程类型ltid，1-早教，2-家教，3-宝健",value = "获取课程列表接口")
+    public ResultVo queryLessonsList(Integer ltid) { return lessonsService.queryLessonsList(ltid); }
 
 
 }

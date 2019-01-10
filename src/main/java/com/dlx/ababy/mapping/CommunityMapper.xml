@@ -27,7 +27,12 @@
     <result column="com_info" jdbcType="VARCHAR" property="comInfo" />
     <result column="com_likenum" jdbcType="INTEGER" property="comLikenum" />
     <result column="com_comty_id" jdbcType="INTEGER" property="comComtyId" />
-    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <collection property="list" javaType="java.util.ArrayList"
+                ofType="java.lang.String">
+
+      <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+
+    </collection>
   </resultMap>
 
   <sql id="Base_Column_List">
@@ -146,7 +151,7 @@
     ORDER BY co.com_id
     LIMIT #{index},#{limit}
   </select>
-<select id="selectByInfo" parameterType="string" resultMap="BaseResultMap3">
+<select id="selectByInfo" parameterType="string" resultMap="BaseResultMap">
   select c.com_id from community c where c.com_info=#{comInfo}
 </select>
   <select id="selectcount" resultType="int">

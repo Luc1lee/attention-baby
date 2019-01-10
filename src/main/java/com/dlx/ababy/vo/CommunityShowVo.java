@@ -1,25 +1,18 @@
 package com.dlx.ababy.vo;
 
 import java.util.Date;
+import java.util.List;
 
 public class CommunityShowVo {
     private Integer id;
     private String name;
     private String photo;
-    private String imgUrl;
+    private List<String> imgUrl;
     private Integer comId;
     private Date comDate;
     private String comInfo;
     private Integer comLikenum;
     private Integer comComtyId;
-
-    public Integer getComComtyId() {
-        return comComtyId;
-    }
-
-    public void setComComtyId(Integer comComtyId) {
-        this.comComtyId = comComtyId;
-    }
 
     public Integer getId() {
         return id;
@@ -45,11 +38,11 @@ public class CommunityShowVo {
         this.photo = photo;
     }
 
-    public String getImgUrl() {
+    public List<String> getImgUrl() {
         return imgUrl;
     }
 
-    public void setImgUrl(String imgUrl) {
+    public void setImgUrl(List<String> imgUrl) {
         this.imgUrl = imgUrl;
     }
 
@@ -83,5 +76,13 @@ public class CommunityShowVo {
 
     public void setComLikenum(Integer comLikenum) {
         this.comLikenum = comLikenum;
+    }
+
+    public Integer getComComtyId() {
+        return comComtyId;
+    }
+
+    public void setComComtyId(Integer comComtyId) {
+        this.comComtyId = comComtyId;
     }
 }

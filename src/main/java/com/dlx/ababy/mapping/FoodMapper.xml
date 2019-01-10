@@ -8,6 +8,19 @@
     <result column="fd_type" jdbcType="INTEGER" property="fdType" />
     <result column="fd_cook" jdbcType="VARCHAR" property="fdCook" />
   </resultMap>
+  <resultMap id="BaseResultMap2" type="com.dlx.ababy.vo.FoodVo">
+    <id column="fd_id" jdbcType="INTEGER" property="fdId" />
+    <result column="fd_name" jdbcType="VARCHAR" property="fdName" />
+    <result column="fd_info" jdbcType="VARCHAR" property="fdInfo" />
+    <result column="fd_type" jdbcType="INTEGER" property="fdType" />
+    <result column="fd_cook" jdbcType="VARCHAR" property="fdCook" />
+    <collection property="list" javaType="java.util.ArrayList"
+                ofType="java.lang.String">
+
+      <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+
+    </collection>
+  </resultMap>
   <sql id="Base_Column_List">
     fd_id, fd_name, fd_info, fd_type, fd_cook
   </sql>
@@ -95,5 +108,19 @@
     inner join mycollection m
     on f.fd_id=m.mc_fd_id
     where m.mc_u_id = #{mcUId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByName" parameterType="string" resultMap="BaseResultMap">
+    select fd_id from food where fd_name=#{fdName}
+  </select>
+
+  <select id="selectByPage" resultMap="BaseResultMap2">
+    SELECT f.*,i.img_url FROM food f
+                                INNER JOIN img i
+                                           ON f.fd_id=i.img_fd_id
+    ORDER BY f.fd_id
+    LIMIT #{index},#{limit}
+  </select>
+  <select id="selectcount" resultType="int">
+    select count(*) from food
   </select>
 </mapper>

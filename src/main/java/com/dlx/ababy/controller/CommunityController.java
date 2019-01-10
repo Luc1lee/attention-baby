@@ -4,7 +4,6 @@ import com.dlx.ababy.entity.Community;
 import com.dlx.ababy.entity.Img;
 import com.dlx.ababy.service.CommunityService;
 import com.dlx.ababy.vo.CommunityVo;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.qfedu.vo.ResultVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

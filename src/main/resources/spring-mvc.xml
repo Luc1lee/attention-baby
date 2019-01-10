@@ -39,8 +39,26 @@
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
+	<mvc:interceptors>
+		<bean class="org.springframework.web.servlet.handler.ConversionServiceExposingInterceptor">
+			<constructor-arg ref="convertorService" />
+		</bean>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="language" />
+		</bean>
+		<!-- token重复提交检验 -->
 
-	 
+		<mvc:interceptor>
+			<!-- 匹配的是URL路径，不配置或/**，拦截所有Controller -->
+			<mvc:mapping path="/**"/>
+			<!-- /user/login.do 不需要拦截 -->
+			<mvc:exclude-mapping path="/user/login.do" />
+			<mvc:exclude-mapping path="/user/add.do" />
+			<mvc:exclude-mapping path="/v2/api-docs" />
+			<bean class="com.dlx.ababy.tokenVerify.TokenInterceptor" />
+		</mvc:interceptor>
+
+	</mvc:interceptors>
      
      <!-- 设置自定义的转换器 -->
      <bean id="convertorService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">

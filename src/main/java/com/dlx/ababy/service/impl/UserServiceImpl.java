@@ -20,13 +20,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResultVo addUser(User user) {
-        User user1 = um.selectByTel(user.getTel());
-        if (user1 != null && !user1.equals("")){
+       /* User user1 = um.selectByTel(user.getTel());*/
+       /* if (user1 != null && !user1.equals("")){*/
             um.insert(user);
-            return  ResultVo.setOK(null);
-        } else {
+            return  ResultVo.setOK(user);
+       /* } else {
             return ResultVo.setERROR();
-        }
+        }*/
 
     }
 
@@ -89,5 +89,10 @@ public class UserServiceImpl implements UserService {
         User user = um.selectByPrimaryKey(id);
 
         return ResultVo.setOK(user);
+    }
+
+    @Override
+    public User selectByTel(String tel) {
+        return um.selectByTel(tel);
     }
 }

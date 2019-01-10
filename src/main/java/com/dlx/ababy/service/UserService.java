@@ -13,4 +13,6 @@ public interface UserService {
     ResultVo updateSVIP(Integer id);
 
     ResultVo findById(Integer id);
+
+    User selectByTel(String tel);
 }

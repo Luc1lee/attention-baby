@@ -122,14 +122,42 @@
             <version>2.9.2</version>
         </dependency>
 
-
-
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
 
 
 
     <build>
+
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
+
+
         <plugins>
             <!-- maven中的tomcat插件 -->
             <plugin>
@@ -140,7 +168,7 @@
                     <uriEncoding>UTF-8</uriEncoding>
                     <!-- 配置web应用的路径 -->
                     <port>8081</port>
-                    <path>/baby</path>
+
                 </configuration>
             </plugin>
             <!-- 指定编译版本 -->
@@ -155,6 +183,7 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 

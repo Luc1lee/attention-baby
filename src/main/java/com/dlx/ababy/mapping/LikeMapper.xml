@@ -79,7 +79,7 @@
       lk_u_id = #{lkUId,jdbcType=INTEGER}
     where lk_id = #{lkId,jdbcType=INTEGER}
   </update>
-  <delete id="deleteLike" parameterType="com.dlx.ababy.entity.Liker">
+  <delete id="deleteLike" parameterType="com.dlx.ababy.entity.Like">
     delete from like
     <where>
 

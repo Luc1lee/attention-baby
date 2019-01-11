@@ -10,6 +10,8 @@ import com.dlx.ababy.entity.Img;
 import com.dlx.ababy.entity.Photos;
 import com.dlx.ababy.service.ImgService;
 import com.dlx.ababy.service.PhotosService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,12 +28,14 @@ import com.qfedu.vo.ResultVo;
 * @date: 2019年1月9日 下午7:54:37
 * @ClassName: FileUP.java
 */
+@Api(produces = "这是Java编写的接口文档",value = "接口文档")
 @RestController
 @CrossOrigin
 public class FileUP {
 	private ResultVo rv;
 	@Autowired
 	private ImgService iService;
+	@ApiOperation(notes = "文件上传",value = "返回所有上传文件名字UUID+原文件名")
 	@PostMapping("/upload.do")
 	public ResultVo upload(@RequestParam MultipartFile[] upfiles){
 		//获取表单中提交的其他参数

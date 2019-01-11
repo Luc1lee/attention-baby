@@ -12,9 +12,12 @@ import com.qfedu.vo.ResultVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 
 @Api(produces = "这是Java编写的接口文档",value = "接口文档")
@@ -51,9 +54,26 @@ public class FoodController {
         return fService.queryAllFood(page, limit);
     }
 
-    @ApiOperation(notes = "查询食物信息接口",value = "可以输入名字，信息，类型，做法，返回食物信息")
+    @ApiOperation(notes = "查询食物信息接口",value = "可以输入名字，返回食物信息")
     @GetMapping("/foodSearch.do")
-    public ResultVo foodSearch(String str) {
-        return ResultVo.setOK(fService.queryByCondition(str));
+    public ResultVo foodSearch( HttpServletRequest request) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        String fdName = request.getParameter("fdName");
+        if (fdName.equals("")) {
+            return ResultVo.setERROR();
+        } else {
+            map.put("fdName", fdName);
+            List<FoodVo> list = fService.queryByCondition(map);
+
+            return ResultVo.setOK(list);
+        }
+    }
+    @ApiOperation(notes = "查询食物信息接口",value = "可以输入类型id，返回食物信息")
+    @GetMapping("/foodSearchByType.do")
+    public ResultVo foodSearchByType(int id) {
+            List<FoodVo> list = fService.queryByType(id);
+
+            return ResultVo.setOK(list);
+
     }
 }

@@ -24,6 +24,16 @@
   <sql id="Base_Column_List">
     fd_id, fd_name, fd_info, fd_type, fd_cook
   </sql>
+  <sql id="seach_By_Condition_Cilumn_list">
+    <where>
+      <if test="fdName != null and fdName !='' ">
+        and f.fd_name LIKE ConCat('%',#{fdName},'%')
+      </if>
+      <if test="fdInfo != null and fdInfo !='' ">
+        and f.fd_info LIKE ConCat('%',#{fdInfo},'%')
+      </if>
+    </where>
+  </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -123,13 +133,19 @@
   <select id="selectcount" resultType="int">
     select count(*) from food
   </select>
-  <select id="selectByCondition" parameterType="string" resultMap="BaseResultMap2">
+  <select id="selectByCondition" parameterType="map" resultMap="BaseResultMap2">
     SELECT f.*,i.img_url FROM food f
                                 INNER JOIN img i
                                            on f.fd_id=i.img_fd_id
-    WHERE f.fd_name LIKE ConCat('%',#{fdName},'%') OR f.fd_info LIKE ConCat('%',#{fdInfo},'%')
-       OR f.fd_type LIKE ConCat('%',#{fdType},'%') OR f.fd_cook LIKE ConCat('%',#{fdCook},'%')
+    <include refid="seach_By_Condition_Cilumn_list"/>
     ORDER BY f.fd_id
 
+  </select>
+  <select id="selectByTypeId" parameterType="int" resultMap="BaseResultMap2">
+    SELECT f.*,i.img_url FROM food f
+    INNER JOIN img i
+    on f.fd_id=i.img_fd_id
+    where f.fd_type=#{fdTpe}
+    ORDER BY f.fd_id
   </select>
 </mapper>

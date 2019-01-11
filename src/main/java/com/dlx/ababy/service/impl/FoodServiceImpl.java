@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class FoodServiceImpl implements FoodService {
@@ -38,8 +40,13 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
-    public ResultVo queryByCondition(String str) {
-        return ResultVo.setOK(fDao.selectByCondition(str));
+    public List<FoodVo> queryByCondition(Map<String, Object> infos) {
+        return fDao.selectByCondition(infos);
+    }
+
+    @Override
+    public List<FoodVo> queryByType(int id) {
+        return fDao.selectByTypeId(id);
     }
 
 }

@@ -1,8 +1,10 @@
 package com.dlx.ababy.dao;
 
 import com.dlx.ababy.entity.Food;
+import com.dlx.ababy.vo.FoodVo;
 
 import java.util.List;
+import java.util.Map;
 
 public interface FoodMapper {
     int deleteByPrimaryKey(Integer fdId);
@@ -16,6 +18,16 @@ public interface FoodMapper {
     int updateByPrimaryKeySelective(Food record);
 
     int updateByPrimaryKey(Food record);
+
+    Food selectByName(String name);
+    int selectcount();
+
+    List<FoodVo> selectByPage(Map<String,Object> param);
+
+    List<FoodVo> selectByCondition(Map<String,Object> param);
+
+
+    List<FoodVo> selectByTypeId(Integer id);
 
     List<Food> findCollectionByMcUId(Integer mcUId);
 }

@@ -1,6 +1,8 @@
 package com.dlx.ababy.dao;
 
 import com.dlx.ababy.entity.Attention;
+import com.dlx.ababy.vo.AttentionVo;
+import com.dlx.ababy.vo.CommunityShowVo;
 
 import java.util.List;
 import java.util.Map;
@@ -10,11 +12,11 @@ public interface AttentionMapper {
 
     int insert(Attention record);
 
-    List<Attention> selectAllAttn();
+    List<AttentionVo> selectAllAttn();
 
     int selectcount();
 
-    List<Attention> selectByPage(Map<String,Object> param);
+    List<AttentionVo> selectByPage(Map<String,Object> param);
 
-    List<Attention> selectByUid(Integer id,Map<String,Object> param);
+    List<CommunityShowVo> selectByUid(Integer id, Map<String,Object> param);
 }

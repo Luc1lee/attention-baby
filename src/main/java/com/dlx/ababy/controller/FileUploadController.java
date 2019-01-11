@@ -1,15 +1,7 @@
-package com.dlx.ababy.Utils;
+package com.dlx.ababy.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-import com.dlx.ababy.entity.Img;
-import com.dlx.ababy.entity.Photos;
 import com.dlx.ababy.service.ImgService;
-import com.dlx.ababy.service.PhotosService;
+import com.qfedu.vo.ResultVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.qfedu.vo.ResultVo;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 /**
 * Copyright: Copyright (c) 2018 
@@ -31,12 +27,12 @@ import com.qfedu.vo.ResultVo;
 @Api(produces = "这是Java编写的接口文档",value = "接口文档")
 @RestController
 @CrossOrigin
-public class FileUP {
+public class FileUploadController {
 	private ResultVo rv;
 	@Autowired
 	private ImgService iService;
 	@ApiOperation(notes = "文件上传",value = "返回所有上传文件名字UUID+原文件名")
-	@PostMapping("/upload2.do")
+	@PostMapping("/upload.do")
 	public ResultVo upload(@RequestParam MultipartFile[] upfiles){
 		//获取表单中提交的其他参数
 		//System.out.println(uname);

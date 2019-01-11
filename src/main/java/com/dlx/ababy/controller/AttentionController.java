@@ -18,31 +18,31 @@ public class AttentionController {
     @Autowired
     private AttentionService atService;
 
-    @ApiOperation(notes = "关注",value = "需要关注人id和被关注人id")
+    @ApiOperation(notes = "关注",value = "新增关注，需要关注人id和被关注人id")
     @PostMapping("/attenSave.do")
     public ResultVo Save(Attention attention) {
 
         return atService.save(attention);
     }
-    @ApiOperation(notes = "取消关注",value = "需要关注人id和被关注人id")
+    @ApiOperation(notes = "取消关注",value = "取消关注，需要关注人id和被关注人id")
     @GetMapping("/attenDel.do")
     public ResultVo deleteAtten(int Uid,int Bid) {
 
         return atService.delete(Uid,Bid);
     }
-    @ApiOperation(notes = "所有关注",value = "仅返回id")
+    @ApiOperation(notes = "所有关注",value = "获取所有关注信息，返回关注者与被关注者名字")
     @GetMapping("/attenAll.do")
     public ResultVo selAtten() {
 
         return atService.queryAll();
     }
-    @ApiOperation(notes = "所有关注",value = "需要页码和条数，返回关注者与被关注者名字")
+    @ApiOperation(notes = "所有关注",value = "获取所有关注信息，需要页码和条数，返回关注者与被关注者名字")
     @GetMapping("/attenAllByPage.do")
     public PageBeanVo selAttenByPage(int page, int limit) {
 
         return atService.queryAllByPage(page,limit);
     }
-    @ApiOperation(notes = "所有关注",value = "需要页码和条数，通过用户id返回所有被关注者发表的信息")
+    @ApiOperation(notes = "所有关注",value = "获取所有关注信息，需要页码和条数，通过用户id返回所有被关注者发表的信息")
     @GetMapping("/attenAllByUid.do")
     public PageBeanVo selAttenByUid(int Uid,int page, int limit) {
 

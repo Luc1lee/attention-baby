@@ -20,7 +20,12 @@
     <result column="com_info" jdbcType="VARCHAR" property="comInfo" />
     <result column="com_likenum" jdbcType="INTEGER" property="comLikenum" />
     <result column="com_comty_id" jdbcType="INTEGER" property="comComtyId" />
-    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <collection property="list" javaType="java.util.ArrayList"
+                ofType="java.lang.String">
+
+      <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+
+    </collection>
   </resultMap>
   <sql id="Base_Column_List">
     at_id, at_u_fid, at_u_bid

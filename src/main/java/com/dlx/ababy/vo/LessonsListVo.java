@@ -12,9 +12,7 @@ public class LessonsListVo {
 
     private String thPhoto;
 
-    public Integer getLtId() {
-        return ltId;
-    }
+    public Integer getLtId() { return ltId; }
 
     public void setLtId(Integer ltId) {
         this.ltId = ltId;

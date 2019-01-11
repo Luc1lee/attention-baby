@@ -1,6 +1,7 @@
 package com.dlx.ababy.dao;
 
 import com.dlx.ababy.entity.Community;
+import com.dlx.ababy.vo.CommunityShowVo;
 
 import java.util.List;
 import java.util.Map;
@@ -18,9 +19,9 @@ public interface CommunityMapper {
 
     int updateByPrimaryKey(Community record);
 
-    List<Community> selectByComtId(Integer id, Map<String,Object> param);
+    List<CommunityShowVo> selectByComtId(Integer id, Map<String,Object> param);
 
-    List<Community> selectByLikeNum(Map<String,Object> param);
+    List<CommunityShowVo> selectByLikeNum(Map<String,Object> param);
 
     Community selectByInfo(String info);
 

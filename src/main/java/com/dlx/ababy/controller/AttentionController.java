@@ -30,7 +30,7 @@ public class AttentionController {
 
         return atService.delete(Uid,Bid);
     }
-    @ApiOperation(notes = "所有关注",value = "获取所有关注信息，仅返回双方id")
+    @ApiOperation(notes = "所有关注",value = "获取所有关注信息，返回关注者与被关注者名字")
     @GetMapping("/attenAll.do")
     public ResultVo selAtten() {
 

@@ -1,6 +1,7 @@
 package com.dlx.ababy.dao;
 
 import com.dlx.ababy.entity.Food;
+import com.dlx.ababy.vo.FoodVo;
 
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,9 @@ public interface FoodMapper {
     Food selectByName(String name);
     int selectcount();
 
-    List<Food> selectByPage(Map<String,Object> param);
+    List<FoodVo> selectByPage(Map<String,Object> param);
+
+
 
     List<Food> findCollectionByMcUId(Integer mcUId);
 }

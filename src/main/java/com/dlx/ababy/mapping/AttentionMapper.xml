@@ -12,15 +12,15 @@
     <result column="name2" jdbcType="VARCHAR" property="attBeName" />
   </resultMap>
   <resultMap id="BaseResultMap3" type="com.dlx.ababy.vo.CommunityShowVo">
-    <id column="id" jdbcType="INTEGER" property="Id" />
-    <result column="name" jdbcType="VARCHAR" property="Name" />
-    <result column="photo" jdbcType="VARCHAR" property="Photo" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
     <result column="com_id" jdbcType="INTEGER" property="comId" />
     <result column="com_date" jdbcType="TIMESTAMP" property="comDate" />
     <result column="com_info" jdbcType="VARCHAR" property="comInfo" />
     <result column="com_likenum" jdbcType="INTEGER" property="comLikenum" />
     <result column="com_comty_id" jdbcType="INTEGER" property="comComtyId" />
-    <collection property="list" javaType="java.util.ArrayList"
+    <collection property="imgUrl" javaType="java.util.ArrayList"
                 ofType="java.lang.String">
 
       <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
@@ -61,7 +61,7 @@
                                                               ON a.at_u_fid=us.id
     ORDER BY a.at_id LIMIT #{index},#{limit}
   </select>
-  <select id="selectByUid" parameterType="int" resultMap="BaseResultMap3">
+  <select id="selectByUid"  resultMap="BaseResultMap3">
     SELECT u.id,u.`name`,u.photo,co.com_id,co.com_date,co.com_info,co.com_likenum,co.com_comty_id,i.img_url FROM attention a
     INNER JOIN `user` u
              ON a.at_u_bid=u.id

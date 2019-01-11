@@ -28,10 +28,11 @@ public class CommunityServiceImpl implements CommunityService {
     @Override
     public PageBeanVo<CommunityShowVo> queryCommByComtId(Integer id,int page,int limit) {
         HashMap<String, Object> map = new HashMap<>();
+        map.put("comComtyId",id);
         map.put("index", (page - 1) * limit);
         map.put("limit", limit);
 
-        return  PageBeanVo.setPage(commDao.selectcount(),commDao.selectByComtId(id,map));
+        return  PageBeanVo.setPage(commDao.selectcount(),commDao.selectByComtId(map));
     }
 
     @Override

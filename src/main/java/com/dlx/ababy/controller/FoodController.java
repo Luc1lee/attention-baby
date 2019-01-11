@@ -29,7 +29,7 @@ public class FoodController {
     private FoodService fService;
     @Autowired
     private ImgService imgService;
-    @ApiOperation(notes = "新增食物接口",value = "新增食物,需要传递上传成功的imgurl")
+    @ApiOperation(notes = "新增食物接口",value = "新增食物,不需要传递fdId，需要传递上传成功的imgurl")
     @PostMapping("/foodSave.do")
     public ResultVo Save(FoodVo vo) {
         List<String> url = vo.getImgUrl();

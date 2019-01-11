@@ -18,7 +18,7 @@ public class AttentionController {
     @Autowired
     private AttentionService atService;
 
-    @ApiOperation(notes = "关注",value = "新增关注，需要关注人id和被关注人id")
+    @ApiOperation(notes = "关注",value = "新增关注，需要关注人id(atUFid)和被关注人id(atUBid),不需要atId")
     @PostMapping("/attenSave.do")
     public ResultVo Save(Attention attention) {
 

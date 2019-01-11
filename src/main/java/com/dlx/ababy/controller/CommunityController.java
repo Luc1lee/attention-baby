@@ -24,14 +24,15 @@ public class CommunityController {
     private CommunityService commService;
     @Autowired
     private ImgService imgService;
-    @ApiOperation(notes = "发表社区动态接口",value = "发表新的社区动态,需要传递上传成功的imgurl")
+    @ApiOperation(notes = "发表社区动态接口",value = "发表新的社区动态,需要传递上传成功的imgurl，不需要传递点赞数(默认0)不需要传递comId")
     @PostMapping("/communitySave.do")
     public ResultVo Save(CommunityVo vo) {
         List<String> url = vo.getImgUrl();
         Community co = new Community();
-        co.setuId(co.getuId());
-        co.setComInfo(co.getComInfo());
-        co.setComDate(co.getComDate());
+        co.setuId(vo.getuId());
+        co.setComInfo(vo.getComInfo());
+        co.setComDate(vo.getComDate());
+        co.setComComtyId(vo.getComComtyId());
         commService.save(co);
         for (int i =0; i < url.size(); i++) {
             Img img = new Img();
@@ -56,7 +57,7 @@ public class CommunityController {
         return commService.queryCommByLikeNum(page,limit);
     }
 
-    @ApiOperation(notes = "删除",value = "删除社区动态")
+    @ApiOperation(notes = "删除",value = "删除某一条社区动态")
     @GetMapping("/communityDel.do")
     public ResultVo Deletecomm(int id) {
 

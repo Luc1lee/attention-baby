@@ -14,7 +14,7 @@
     <result column="fd_info" jdbcType="VARCHAR" property="fdInfo" />
     <result column="fd_type" jdbcType="INTEGER" property="fdType" />
     <result column="fd_cook" jdbcType="VARCHAR" property="fdCook" />
-    <collection property="list" javaType="java.util.ArrayList"
+    <collection property="imgUrl" javaType="java.util.ArrayList"
                 ofType="java.lang.String">
 
       <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />

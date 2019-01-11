@@ -55,6 +55,7 @@
 			<mvc:exclude-mapping path="/user/login.do" />
 			<mvc:exclude-mapping path="/user/add.do" />
 			<mvc:exclude-mapping path="/v2/api-docs" />
+
 			<bean class="com.dlx.ababy.tokenVerify.TokenInterceptor" />
 		</mvc:interceptor>
 

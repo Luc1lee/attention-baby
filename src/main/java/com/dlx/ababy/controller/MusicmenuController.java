@@ -24,7 +24,7 @@ public class MusicmenuController {
     @GetMapping("/mmenuinfo.do")
     public ResultVo queryMmInfo(Integer mmid) { return musicmenuService.queryMusicMenuInfo(mmid); }
 
-    @ApiOperation(notes = "查询音频单(歌单，故事单)",value = "获取音频单名及图片")
+    @ApiOperation(notes = "查询音频单(歌单，故事单)列表",value = "获取音频单名及图片")
     @GetMapping("/mmenulist.do")
     public ResultVo queryMmInfoList(Integer mdType) { return musicmenuService.queryMusicMenuList(mdType); }
 

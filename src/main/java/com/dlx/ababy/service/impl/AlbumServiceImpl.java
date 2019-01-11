@@ -42,21 +42,8 @@ public class AlbumServiceImpl implements AlbumService {
     @Override
     public ResultVo buyAlbumByUid(Album album) {
 
-        ResultVo vo = null;
+        int insertSelective = albumMapper.insertSelective(album);
 
-        try {
-            albumMapper.insertSelective(album);
-            vo.setMsg("OK");
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                sleep(3000);
-            } catch (InterruptedException e1) {
-                e1.printStackTrace();
-            }
-            vo.setMsg("网络波动较大，订单创建失败");
-        }
-
-        return vo;
+        return ResultVo.setOK(insertSelective);
     }
 }

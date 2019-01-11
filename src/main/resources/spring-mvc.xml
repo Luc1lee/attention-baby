@@ -48,15 +48,15 @@
 		</bean>
 		<!-- token重复提交检验 -->
 
-		<mvc:interceptor>
-			<!-- 匹配的是URL路径，不配置或/**，拦截所有Controller -->
+		<!--<mvc:interceptor>
+			&lt;!&ndash; 匹配的是URL路径，不配置或/**，拦截所有Controller &ndash;&gt;
 			<mvc:mapping path="/**"/>
-			<!-- /user/login.do 不需要拦截 -->
+			&lt;!&ndash; /user/login.do 不需要拦截 &ndash;&gt;
 			<mvc:exclude-mapping path="/user/login.do" />
 			<mvc:exclude-mapping path="/user/add.do" />
 			<mvc:exclude-mapping path="/v2/api-docs" />
 			<bean class="com.dlx.ababy.tokenVerify.TokenInterceptor" />
-		</mvc:interceptor>
+		</mvc:interceptor>-->
 
 	</mvc:interceptors>
      

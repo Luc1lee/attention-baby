@@ -1,7 +1,7 @@
 package com.dlx.ababy.controller;
 
+
 import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.dlx.ababy.entity.User;
 import com.dlx.ababy.service.UserService;
@@ -9,9 +9,7 @@ import com.dlx.ababy.tokenVerify.JwtVerify;
 import com.qfedu.vo.ResultVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Api(produces = "育宝宝项目",value = "接口文档")
@@ -34,10 +32,12 @@ public class UserController {
     @CrossOrigin
     public ResultVo login(String tel, String password) {
         ResultVo vo = us.login(tel, password);
+        User user = us.selectByTel(tel);
+        String id = user.getId().toString();
         if (vo.getCode() == 0) {
-            User user = us.selectByTel(tel);
 
-            String token = JwtVerify.sign(tel, password);
+            String token = JwtVerify.sign(tel, id);
+
 
             if (token != null) {
                 return ResultVo.setOK(token);

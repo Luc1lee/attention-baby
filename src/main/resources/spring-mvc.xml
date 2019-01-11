@@ -82,6 +82,13 @@
 
 	</bean> -->
 
+	<mvc:cors>
+		<mvc:mapping path="/**"
+					 allowed-origins="*"
+					 allowed-methods="POST, GET, OPTIONS, DELETE, PUT"
+					 allowed-headers="Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+					 allow-credentials="true" />
+	</mvc:cors>
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!--&lt&ndash; 上传文件的最大大小 ，单位字节 ，比如 1024 * 1024 = 1M&ndash;&gt;-->
 		<property name="maxUploadSize" value="1048576"></property>

@@ -6,6 +6,13 @@
     <result column="mm_u_id" jdbcType="INTEGER" property="mmUId" />
     <result column="mm_name" jdbcType="VARCHAR" property="mmName" />
   </resultMap>
+  <resultMap id="InfoResultMap" type="com.dlx.ababy.vo.MusicmenuInfoVo">
+    <id column="mm_id" jdbcType="INTEGER" property="mmId" />
+    <result column="mm_u_id" jdbcType="INTEGER" property="mmUId" />
+    <result column="mm_name" jdbcType="VARCHAR" property="mmName" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="md_type" jdbcType="INTEGER" property="mdType" />
+  </resultMap>
   <sql id="Base_Column_List">
     mm_id, mm_u_id, mm_name
   </sql>
@@ -68,4 +75,21 @@
       mm_name = #{mmName,jdbcType=VARCHAR}
     where mm_id = #{mmId,jdbcType=INTEGER}
   </update>
+  <select id="selectInfoByPrimaryKey" parameterType="java.lang.Integer" resultMap="InfoResultMap">
+    SELECT mm.mm_name, i.img_url FROM musicmenu mm
+    INNER JOIN media md
+    ON md_mm_id = mm.mm_id
+    INNER JOIN img i
+    ON md.md_id = i.img_md_id
+    WHERE mm.mm_id = #{mmId,jdbcType=INTEGER}
+    LIMIT 1
+  </select>
+  <select id="selectInfoByMdType" parameterType="java.lang.Integer" resultMap="InfoResultMap">
+    SELECT mm.mm_id, mm.mm_name, i.img_url FROM musicmenu mm
+    INNER JOIN media md
+    ON md_mm_id = mm.mm_id
+    INNER JOIN img i
+    ON md.md_id = i.img_md_id
+    WHERE md.md_type = #{mdType,jdbcType=INTEGER}
+  </select>
 </mapper>

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class FoodController {
     private FoodService fService;
     @Autowired
     private ImgService imgService;
-    @ApiOperation(notes = "新增食物接口",value = "新增食物,需要传递上传成功的imgurl")
+    @ApiOperation(notes = "新增食物接口",value = "新增食物,不需要传递fdId，需要传递上传成功的imgurl")
     @PostMapping("/foodSave.do")
     public ResultVo Save(FoodVo vo) {
         List<String> url = vo.getImgUrl();
@@ -56,10 +57,12 @@ public class FoodController {
 
     @ApiOperation(notes = "查询食物信息接口",value = "可以输入名字，返回食物信息")
     @GetMapping("/foodSearch.do")
-    public ResultVo foodSearch( HttpServletRequest request) {
+    public ResultVo foodSearch(HttpServletRequest request) throws UnsupportedEncodingException {
         HashMap<String, Object> map = new HashMap<String, Object>();
         String fdName = request.getParameter("fdName");
-        if (fdName.equals("")) {
+        fdName =  java.net.URLDecoder.decode(fdName,"UTF-8");
+        System.out.println(fdName);
+        if (fdName.equals("") || fdName == null) {
             return ResultVo.setERROR();
         } else {
             map.put("fdName", fdName);

@@ -19,7 +19,7 @@ public interface CommunityMapper {
 
     int updateByPrimaryKey(Community record);
 
-    List<CommunityShowVo> selectByComtId(Integer id, Map<String,Object> param);
+    List<CommunityShowVo> selectByComtId(Map<String,Object> param);
 
     List<CommunityShowVo> selectByLikeNum(Map<String,Object> param);
 

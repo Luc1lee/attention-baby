@@ -18,5 +18,5 @@ public interface AttentionMapper {
 
     List<AttentionVo> selectByPage(Map<String,Object> param);
 
-    List<CommunityShowVo> selectByUid(Integer id, Map<String,Object> param);
+    List<CommunityShowVo> selectByUid(Map<String,Object> param);
 }

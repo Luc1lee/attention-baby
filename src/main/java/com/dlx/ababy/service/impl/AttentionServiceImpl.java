@@ -54,8 +54,9 @@ public class AttentionServiceImpl implements AttentionService {
     @Override
     public PageBeanVo<CommunityShowVo> queryAllByUid(int Uid,int page,int limit) {
         HashMap<String, Object> map = new HashMap<>();
+        map.put("Id",Uid);
         map.put("index", (page - 1) * limit);
         map.put("limit", limit);
-        return PageBeanVo.setPage(atDao.selectcount(),atDao.selectByUid(Uid,map));
+        return PageBeanVo.setPage(atDao.selectcount(),atDao.selectByUid(map));
     }
 }

@@ -36,4 +36,10 @@ public class FoodServiceImpl implements FoodService {
         map.put("limit", limit);
         return PageBeanVo.setPage(fDao.selectcount(),fDao.selectByPage(map));
     }
+
+    @Override
+    public ResultVo queryByCondition(String str) {
+        return ResultVo.setOK(fDao.selectByCondition(str));
+    }
+
 }

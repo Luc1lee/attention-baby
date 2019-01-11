@@ -24,7 +24,7 @@ public interface FoodMapper {
 
     List<FoodVo> selectByPage(Map<String,Object> param);
 
-
+    List<FoodVo> selectByCondition(String str);
 
     List<Food> findCollectionByMcUId(Integer mcUId);
 }

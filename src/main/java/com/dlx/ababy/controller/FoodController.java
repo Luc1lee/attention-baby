@@ -51,5 +51,9 @@ public class FoodController {
         return fService.queryAllFood(page, limit);
     }
 
-
+    @ApiOperation(notes = "查询食物信息接口",value = "可以输入名字，信息，类型，做法，返回食物信息")
+    @GetMapping("/foodSearch.do")
+    public ResultVo foodSearch(String str) {
+        return ResultVo.setOK(fService.queryByCondition(str));
+    }
 }

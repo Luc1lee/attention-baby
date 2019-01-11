@@ -123,4 +123,13 @@
   <select id="selectcount" resultType="int">
     select count(*) from food
   </select>
+  <select id="selectByCondition" parameterType="string" resultMap="BaseResultMap2">
+    SELECT f.*,i.img_url FROM food f
+                                INNER JOIN img i
+                                           on f.fd_id=i.img_fd_id
+    WHERE f.fd_name LIKE ConCat('%',#{fdName},'%') OR f.fd_info LIKE ConCat('%',#{fdInfo},'%')
+       OR f.fd_type LIKE ConCat('%',#{fdType},'%') OR f.fd_cook LIKE ConCat('%',#{fdCook},'%')
+    ORDER BY f.fd_id
+
+  </select>
 </mapper>
